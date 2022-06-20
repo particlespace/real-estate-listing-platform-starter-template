@@ -3,7 +3,7 @@ import { createStyles, Header as MantineHeader, Group, ActionIcon, Container, Bu
 import { useBooleanToggle } from '@mantine/hooks';
 import { BrandTwitter, BrandYoutube, BrandInstagram } from 'tabler-icons-react';
 import { Logo } from '../Logo/Logo';
-import { useStyles } from './styles';
+import { HEADER_HEIGHT, useStyles } from './styles';
 
 
 export interface HeaderProps {
@@ -30,7 +30,7 @@ export function Header({ links }: HeaderProps) {
   ));
 
   return (
-    <MantineHeader height={56} mb={120}>
+    <MantineHeader height={HEADER_HEIGHT}>
       <Container className={classes.inner}>
         <Burger
           opened={opened}
