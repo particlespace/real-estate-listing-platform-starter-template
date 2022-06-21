@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Anchor, Text as MantineText, createStyles, Footer as MantineFooter, Group, ActionIcon, Container, Burger } from '@mantine/core';
+import React from 'react';
+import {
+    Anchor,
+    Text as MantineText,
+    Footer as MantineFooter,
+    Container,
+} from '@mantine/core';
 
 export default function Footer() {
     return (
