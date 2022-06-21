@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Header, HeaderProps,
 } from './components/Header/Header';
+import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
 import logo from './logo.svg';
 import './App.css';
@@ -40,6 +41,7 @@ function App() {
           Map/Details
         </Center>
       </Group>
+      <Footer />
     </div>
   );
 }
