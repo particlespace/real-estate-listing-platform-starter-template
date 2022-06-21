@@ -18,7 +18,7 @@ export default function Footer() {
         >
         <Container size="xl">
             <MantineText color="dimmed" size="sm">
-            Powered with ♥ by <Anchor variant="link" size="sm" href="http://particlespace.com">Particle Space</Anchor>
+            Powered with ♥ by <Anchor variant="link" size="sm" href="https://particlespace.com">Particle Space</Anchor>
             </MantineText>
         </Container>
         </MantineFooter>
