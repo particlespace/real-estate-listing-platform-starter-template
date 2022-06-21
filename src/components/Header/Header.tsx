@@ -63,9 +63,7 @@ export function Header({ links }: HeaderProps) {
         <Group className={classes.links} spacing={5}>
           {items}
         </Group>
-
         <Logo />
-
         <Group
           spacing={0}
           className={classes.authentication}
