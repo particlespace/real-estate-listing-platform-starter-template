@@ -1,6 +1,5 @@
 import React, {
-  useCallback,
-  useState
+  useCallback, useMemo, useState,
 } from 'react';
 import {
   Header as MantineHeader,
@@ -29,19 +28,27 @@ export function Header({ links }: HeaderProps) {
     cx
   } = useStyles();
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={cx(classes.link, { [classes.linkActive]: active === link.link })}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-      }}
-    >
-      {link.label}
-    </a>
-  ));
+  const items = useMemo(
+    () => (
+      links.map((link) => (
+        <a
+          key={link.label}
+          href={link.link}
+          className={cx(
+            classes.link,
+            { [classes.linkActive]: active === link.link },
+          )}
+          onClick={(event) => {
+            event.preventDefault();
+            setActive(link.link);
+          }}
+        >
+          {link.label}
+        </a>
+      ))
+    ),
+    [active, links, cx, classes],
+  );
 
   const handleLogin = useCallback(() => {
     console.log('Handle Login Callback')
