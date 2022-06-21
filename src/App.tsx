@@ -6,6 +6,8 @@ import {
 import { HEADER_HEIGHT } from './components/Header/styles';
 import logo from './logo.svg';
 import './App.css';
+import Map from './components/Map/Map';
+
 
 const links: HeaderProps['links'] = [
   {
@@ -37,7 +39,7 @@ function App() {
           width: '50%',
         }}
           >
-          Map/Details
+          <Map/>
         </Center>
       </Group>
     </div>
