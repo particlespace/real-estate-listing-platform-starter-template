@@ -22,7 +22,7 @@ export const useStyles = createStyles((theme) => ({
     },
   },
 
-  social: {
+  authentication: {
     width: 260,
 
     [theme.fn.smallerThan('sm')]: {
