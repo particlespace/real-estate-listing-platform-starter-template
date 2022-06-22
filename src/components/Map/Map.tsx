@@ -1,7 +1,7 @@
 import { Mark } from '@mantine/core';
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-
+import {Marker} from './Marker';
 
 
 export default function Map() {
@@ -25,6 +25,13 @@ export default function Map() {
         defaultZoom={8}
         zoom={zoom}
         >
+          <Marker
+            lat={39.092306123688125}
+            lng={-94.58670048764}
+            name="My Marker"
+            color="blue"
+            text='$123k'
+          />
         </GoogleMapReact>
     </div>
   );
