@@ -1,11 +1,9 @@
-import { Mark } from '@mantine/core';
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {Marker} from './Marker';
 
 
 export default function Map() {
-  const [geocoder, setGeocoder] = useState<any>(null);
 
   const [center, setCenter] = useState<any>({
     lat: 39.092306123688125,
