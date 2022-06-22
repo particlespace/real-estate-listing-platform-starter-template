@@ -10,7 +10,11 @@ export default function Map() {
     lng: -94.58670048764,
   });
   const [zoom, setZoom] = useState<number>(9);
+  const locations = [
+    {name: "test1", price: '$123k', lat: 39.092306123688125, lng: -94.58670048764},
+    {name: "test2", price: '$255k', lat: 39.092306123688125, lng: -94.6765678}
 
+  ]
   return (
     <div style={{ height: 'calc(100vh - 72px)', width: '100%' }}>
       <GoogleMapReact
@@ -23,13 +27,15 @@ export default function Map() {
         defaultZoom={8}
         zoom={zoom}
         >
-          <Marker
-            lat={39.092306123688125}
-            lng={-94.58670048764}
-            name="My Marker"
-            color="blue"
-            text='$123k'
-          />
+          {locations.map((item, index)=>(
+            <Marker
+              lat={item.lat}
+              lng={item.lng}
+              name={item.name}
+              color="blue"
+              text={item.price}
+              />
+          ))}
         </GoogleMapReact>
     </div>
   );
