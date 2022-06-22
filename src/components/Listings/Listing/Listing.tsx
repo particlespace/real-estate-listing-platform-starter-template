@@ -1,6 +1,6 @@
 import { Card, Image, Text, Badge, Button, Group, useMantineTheme } from '@mantine/core';
 
-function Demo() {
+export function Listing() {
     const theme = useMantineTheme();
 
     const secondaryColor = theme.colorScheme === 'dark'
