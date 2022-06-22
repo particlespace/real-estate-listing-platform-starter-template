@@ -3,6 +3,28 @@ import { createStyles } from '@mantine/core';
 export const HEADER_HEIGHT = 56;
 
 export const useStyles = createStyles((theme) => ({
+  header: {
+    backgroundColor: '#f3f6f4',
+  },
+
+  dropdown: {
+    position: 'absolute',
+    top: HEADER_HEIGHT,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: 'hidden',
+    width: '100px',
+    marginRight: 'auto',
+
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
