@@ -1,4 +1,4 @@
-import { Center, Group } from '@mantine/core';
+import { Group, Center } from '@mantine/core';
 import React from 'react';
 import {
   Header, HeaderProps,
