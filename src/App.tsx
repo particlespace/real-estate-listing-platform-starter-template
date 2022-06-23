@@ -5,42 +5,61 @@ import {
 } from './components/Header/Header';
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
-import logo from './logo.svg';
 import './App.css';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import qs from 'qs';
 
-const token = async () => {
-  try {
-    const response = await fetch('https://api.particlespace.com/api/v1/authenticate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-xxx-form-urlencoded',
-      },
-    } as RequestInit);
-    return response.json();
-  } catch (error) {
-    throw error;
-  }
-}
+/**
+ * Authorization header for the Particle Space API
+ */
+const data = qs.stringify({
+  'secret_key': process.env.SECRET_KEY,
+  'publish_key': process.env.PUBLISH_KEY,
+});
+const authorizationConfig = {
+  method: 'post',
+  url: 'https://api.particlespace.com/api/v1/authenticate',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  data : data
+};
 
+axios(authorizationConfig)
+.then(function (response: AxiosResponse) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error: AxiosError) {
+  console.log(error);
+});
+
+/**
+ * Query params placeholder for the Search API
+ */
 const addressNumber = '808';
 const address = 'awesome street';
 const city = 'San Francisco';
 const state = 'CA';
 const zipcode = '94103';
 
-const data = async () => {
-  try {
-    const response = await fetch(`https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-      },
-    } as RequestInit);
-    return response.json();
-  } catch (error) {
-    throw error;
+/**
+ * Particle Space search API
+ */
+const searchConfig = {
+  method: 'get',
+  url: `https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
+  headers: {
+    'Authorization': 'Bearer ' + process.env.BEARER_TOKEN
   }
-}
+};
+
+axios(searchConfig)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
 
 const links: HeaderProps['links'] = [
   {
