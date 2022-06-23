@@ -6,7 +6,10 @@ import {
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
 import './App.css';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { 
+  AxiosError, 
+  AxiosResponse 
+} from 'axios';
 import qs from 'qs';
 
 /**
@@ -91,7 +94,7 @@ function App() {
           width: '50%',
         }}
           >
-          Map/Details
+          <Map/>
         </Center>
       </Group>
       <Footer />
