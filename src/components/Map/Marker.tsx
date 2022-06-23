@@ -6,12 +6,12 @@ export const Marker = (props: any) => {
 
     const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
         const box: HTMLDivElement = event.currentTarget;
-        box.style.backgroundColor = "green";
+        box.style.backgroundColor = "#000a3d";
     };
 
     const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
         const box: HTMLDivElement = event.currentTarget;
-        box.style.backgroundColor = "blue";
+        box.style.backgroundColor = "#0078ff";
     };
 
     return (
