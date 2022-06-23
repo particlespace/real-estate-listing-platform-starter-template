@@ -16,7 +16,7 @@ const token = async () => {
         'Content-Type': 'application/x-xxx-form-urlencoded',
       },
     } as RequestInit);
-    return JSON.stringify(response);
+    return response.json();
   } catch (error) {
     throw error;
   }
@@ -36,7 +36,7 @@ const data = async () => {
         'Authorization': 'Bearer ' + token,
       },
     } as RequestInit);
-    return JSON.stringify(response);
+    return response.json();
   } catch (error) {
     throw error;
   }
