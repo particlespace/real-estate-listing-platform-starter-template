@@ -15,6 +15,9 @@ export default function Map() {
     {name: "test2", price: '$255k', lat: 39.092306123688125, lng: -94.6765678}
 
   ]
+const handleOnClick = {
+
+}
   return (
     <div style={{ height: 'calc(100vh - 72px)', width: '100%' }}>
       <GoogleMapReact
@@ -32,8 +35,8 @@ export default function Map() {
               lat={item.lat}
               lng={item.lng}
               name={item.name}
-              color="blue"
               text={item.price}
+              onClick = {handleOnClick}
               />
           ))}
         </GoogleMapReact>
