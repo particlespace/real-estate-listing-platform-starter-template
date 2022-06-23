@@ -10,10 +10,7 @@
   user-select: none;
   transform: translate(-50%, -50%);
 }
-.hover {
-  background-color: green;
-}
-.text {
+.textbox {
   margin-top: 18px;
   height: 14px;
   top: 50%;

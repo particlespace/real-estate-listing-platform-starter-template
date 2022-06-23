@@ -23,7 +23,7 @@ export const Marker = (props: any) => {
                 onMouseLeave={handleMouseLeave}
                 >
             </div>
-            <div className='text'>
+            <div className='textbox'>
                 {text}
             </div>
         </div>
