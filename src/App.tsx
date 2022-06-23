@@ -8,6 +8,40 @@ import { HEADER_HEIGHT } from './components/Header/styles';
 import logo from './logo.svg';
 import './App.css';
 
+const token = async () => {
+  try {
+    const response = await fetch('https://api.particlespace.com/api/v1/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-xxx-form-urlencoded',
+      },
+    } as RequestInit);
+    return JSON.stringify(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
+const addressNumber = '808';
+const address = 'awesome street';
+const city = 'San Francisco';
+const state = 'CA';
+const zipcode = '94103';
+
+const data = async () => {
+  try {
+    const response = await fetch(`https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      },
+    } as RequestInit);
+    return JSON.stringify(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 const links: HeaderProps['links'] = [
   {
     link: '/home',
@@ -47,3 +81,4 @@ function App() {
 }
 
 export default App;
+
