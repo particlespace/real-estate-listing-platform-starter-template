@@ -113,19 +113,20 @@ const mainprops =
 
 
 export function Sidebar() {
+    const {image, estimate_list_sell_price, address} = mainprops;
     return (
         <Container>
             <SimpleGrid cols={2} spacing="lg">
-                <div><Listing image={mainprops.image} price={'$' + mainprops.estimate_list_sell_price} sold={true}
-                              address={mainprops.address}/></div>
-                <div><Listing image={mainprops.image} price={'$' + mainprops.estimate_list_sell_price} sold={false}
-                              address={mainprops.address}/></div>
-                <div><Listing image={mainprops.image} price={'$' + mainprops.estimate_list_sell_price} sold={false}
-                              address={mainprops.address}/></div>
-                <div><Listing image={mainprops.image} price={'$' + mainprops.estimate_list_sell_price} sold={true}
-                              address={mainprops.address}/></div>
-                <div><Listing image={mainprops.image} price={'$' + mainprops.estimate_list_sell_price} sold={true}
-                              address={mainprops.address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
             </SimpleGrid>
         </Container>
     )
