@@ -1,13 +1,16 @@
-import {SimpleGrid, ScrollArea} from '@mantine/core';
-import {Listing} from './Listing/Listing';
 
-const mockData = {
-    "estimate_list_sell_price": 42069,
+import { SimpleGrid, Container, ScrollArea } from '@mantine/core';
+import { useState } from 'react';
+import { Listing } from './Listing/Listing';
+import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
+
+const data = {
+    "estimate_list_sell_price": 274200,
     "last_list_or_sold_price": 250000,
     "last_sold_date": "2021-05-04",
     "classification": "single_family",
     "address": {
-        "address": "808 Awesome Street,",
+        "address": "808 Awesome Street",
         "city": "Kansas City",
         "state": "MO",
         "zipcode": "64012"
@@ -98,16 +101,22 @@ const mockData = {
     ]
 }
 
-const mainprops =
-    {
-        image: "https://www.whitehouse.gov/wp-content/uploads/2021/01/white_house_grounds.jpg?w=700&h=530&crop=1",
-        estimate_list_sell_price: mockData.estimate_list_sell_price.toString(),
-        address: "1600 Pennsylvania Avenue NW, Washington, DC 20500"
-    }
-
-
 export function Sidebar() {
-    const {image, estimate_list_sell_price, address} = mainprops;
+    const [ isOpen, setOpen ] = useState(false);
+
+    const {
+        images,
+        estimate_list_sell_price,
+        address: {
+            address,
+            city,
+            state,
+            zipcode
+        }
+    } = data;
+
+    const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
+
     return (
         <ScrollArea
             sx={{
@@ -126,6 +135,6 @@ export function Sidebar() {
                 <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
                               address={address}/></div>
             </SimpleGrid>
-        </Container>
+        </ScrollArea>
     )
 }
