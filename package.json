@@ -13,6 +13,8 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "google-map-react": "^2.1.10",
+    "js-yaml": "^4.1.0",
+    "moment": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -45,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/google-map-react": "^2.1.7"
+    "@types/google-map-react": "^2.1.7",
+    "@types/js-yaml": "^4.0.5"
   }
 }
