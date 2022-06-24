@@ -7,6 +7,14 @@ export function Listing() {
         ? theme.colors.dark[1]
         : theme.colors.gray[7];
 
+    interface ListingProps {
+        image: string,
+        title: string,
+        desc: string,
+        sold: boolean,
+        link: string,
+    }
+
     return (
         <div style={{ width: 340, margin: 'auto' }}>
             <Card shadow="sm" p="lg">
