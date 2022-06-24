@@ -1,9 +1,3 @@
-import React, {
-    useCallback, useMemo, useState,
-} from 'react';
-import {
-    useStyles
-} from './styles';
 import { SimpleGrid, Container } from '@mantine/core';
 import { Listing } from './Listing/Listing';
 

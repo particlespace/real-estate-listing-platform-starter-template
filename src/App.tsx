@@ -1,10 +1,12 @@
-
-import { Center, Group, Modal } from '@mantine/core';
-
 import React from 'react';
 import {
-  Header, HeaderProps,
+  Header,
+  HeaderProps,
 } from './components/Header/Header';
+import {
+  Center,
+  Group,
+} from '@mantine/core';
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
 import PropertyDetailView
@@ -63,10 +65,10 @@ const searchConfig = {
 };
 
 axios(searchConfig)
-.then(function (response) {
+.then(function (response: AxiosResponse) {
   console.log(JSON.stringify(response.data));
 })
-.catch(function (error) {
+.catch(function (error: AxiosError) {
   console.log(error);
 });
 
