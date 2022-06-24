@@ -12,9 +12,9 @@ import { HEADER_HEIGHT } from './components/Header/styles';
 import PropertyDetailView
   from './components/PropertyDetailView/PropertyDetailView';
 import './App.css';
-import axios, { 
-  AxiosError, 
-  AxiosResponse 
+import axios, {
+    AxiosError,
+    AxiosResponse
 } from 'axios';
 import qs from 'qs';
 import Map from './components/Map/Map';
@@ -89,17 +89,23 @@ function App() {
       >
         <Center
           sx={{
-            height: '100%',
-            width: '49%',
+              height: '100%',
+              width: '750px',
+              '@media (max-width: 1600px)': {
+                  width: '375px'
+              },
           }}
         >
           <Sidebar/>
         </Center>
         <Center
           sx={{
-          height: '100%',
-          width: '50%',
-        }}
+              height: '100%',
+              width: 'calc(99% - 750px)',
+              '@media (max-width: 1600px)': {
+                  width: 'calc(97% - 375px)'
+              },
+          }}
           >
           <Map/>
         </Center>

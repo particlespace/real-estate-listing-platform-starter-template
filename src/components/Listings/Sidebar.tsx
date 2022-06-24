@@ -1,8 +1,8 @@
-import { SimpleGrid, Container } from '@mantine/core';
-import { Listing } from './Listing/Listing';
+import {SimpleGrid, ScrollArea} from '@mantine/core';
+import {Listing} from './Listing/Listing';
 
 const mockData = {
-    "estimate_list_sell_price": 274200,
+    "estimate_list_sell_price": 42069,
     "last_list_or_sold_price": 250000,
     "last_sold_date": "2021-05-04",
     "classification": "single_family",
@@ -109,8 +109,12 @@ const mainprops =
 export function Sidebar() {
     const {image, estimate_list_sell_price, address} = mainprops;
     return (
-        <Container>
-            <SimpleGrid cols={2} spacing="lg">
+        <ScrollArea
+            sx={{
+                height: 'calc(100vh - 72px)',
+            }}
+        >
+            <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
                 <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
                               address={address}/></div>
                 <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
