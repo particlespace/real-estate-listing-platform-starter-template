@@ -9,7 +9,7 @@ const data = {
     "last_sold_date": "2021-05-04",
     "classification": "single_family",
     "address": {
-        "address": "808 Awesome Street,",
+        "address": "808 Awesome Street",
         "city": "Kansas City",
         "state": "MO",
         "zipcode": "64012"
@@ -100,32 +100,36 @@ const data = {
     ]
 }
 
-const mainprops =
-    {
-        image: "https://www.whitehouse.gov/wp-content/uploads/2021/01/white_house_grounds.jpg?w=700&h=530&crop=1",
-        estimate_list_sell_price: data.estimate_list_sell_price.toString(),
-        address: "1600 Pennsylvania Avenue NW, Washington, DC 20500"
-    }
-
 export function Sidebar() {
     const [ isOpen, setOpen ] = useState(false);
 
-    const { image, estimate_list_sell_price, address } = mainprops;
+    const {
+        images,
+        estimate_list_sell_price,
+        address: {
+            address,
+            city,
+            state,
+            zipcode
+        }
+    } = data;
+
+    const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
 
     return (
         <Container>
             <PropertyDetailView isOpen={isOpen} setOpen={setOpen} />
             <SimpleGrid cols={2} spacing="lg">
-                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
-                              address={address}/></div>
-                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={false}
-                              address={address}/></div>
-                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={false}
-                              address={address}/></div>
-                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
-                              address={address}/></div>
-                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
-                              address={address}/></div>
+                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
+                              address={propertyAddress}/></div>
+                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={false}
+                              address={propertyAddress}/></div>
+                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={false}
+                              address={propertyAddress}/></div>
+                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
+                              address={propertyAddress}/></div>
+                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
+                              address={propertyAddress}/></div>
             </SimpleGrid>
         </Container>
     )
