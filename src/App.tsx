@@ -1,4 +1,4 @@
-import { Center, Group } from '@mantine/core';
+import { Group, Center } from '@mantine/core';
 import React from 'react';
 import {
   Header, HeaderProps,
@@ -8,6 +8,7 @@ import { HEADER_HEIGHT } from './components/Header/styles';
 import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map/Map';
+import {Sidebar} from './components/Listings/Sidebar'
 
 
 const links: HeaderProps['links'] = [
@@ -32,7 +33,7 @@ function App() {
             width: '49%',
           }}
         >
-          List
+          <Sidebar/>
         </Center>
         <Center
           sx={{
