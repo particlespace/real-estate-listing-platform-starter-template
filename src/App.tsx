@@ -1,4 +1,6 @@
+
 import { Center, Group, Modal } from '@mantine/core';
+
 import React from 'react';
 import {
   Header, HeaderProps,
@@ -9,6 +11,7 @@ import PropertyDetailView
   from './components/PropertyDetailView/PropertyDetailView';
 import './App.css';
 import Map from './components/Map/Map';
+import {Sidebar} from './components/Listings/Sidebar'
 
 
 const links: HeaderProps['links'] = [
@@ -32,7 +35,7 @@ function App() {
             width: '49%',
           }}
         >
-          List
+          <Sidebar/>
         </Center>
         <Center
           sx={{
