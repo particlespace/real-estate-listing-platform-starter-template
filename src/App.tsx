@@ -9,8 +9,6 @@ import {
 } from '@mantine/core';
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
-import PropertyDetailView
-  from './components/PropertyDetailView/PropertyDetailView';
 import './App.css';
 import axios, { 
   AxiosError, 
@@ -93,7 +91,7 @@ function App() {
             width: '49%',
           }}
         >
-          <Sidebar/>
+          <Sidebar />
         </Center>
         <Center
           sx={{
@@ -105,7 +103,6 @@ function App() {
         </Center>
       </Group>
       <Footer />
-      <PropertyDetailView />
     </div>
   );
 }

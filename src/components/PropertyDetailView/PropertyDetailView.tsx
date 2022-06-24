@@ -1,9 +1,22 @@
-import { Card, Modal, Stack, Title } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback
+} from 'react';
+import {
+  Modal,
+  Stack,
+  Title
+} from '@mantine/core';
 import {
   ResultContent
 } from '../ResultContent/ResultContent';
 import { RequestData } from './types';
+
+interface PropertyDetailViewProps {
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
+}
 
 interface AddressComponents {
   address: string
@@ -26,6 +39,7 @@ function getPropertyData({
     zipcode,
   }
 }: PropertyEntry): {data: RequestData} {
+
   const response = {
     data: {
       "estimate_list_sell_price": 274200,
@@ -122,7 +136,12 @@ function getPropertyData({
   return response as { data: RequestData };
 }
 
-export default function PropertyDetailView() {
+export default function PropertyDetailView({
+  isOpen,
+  setOpen
+}: PropertyDetailViewProps) {
+  const [propertyData, setPropertyData] = useState<RequestData | null>(null);
+
   const propertyDetails: PropertyEntry = {
     id: '123',
     formattedAddress: '808 Awesome Street, Kansas City, MO 64012',
@@ -134,8 +153,6 @@ export default function PropertyDetailView() {
     }
   }
 
-  const [propertyData, setPropertyData] = useState<RequestData | null>(null);
-
   // Get the data initially
   useEffect(() => {
     const response = getPropertyData(propertyDetails);
@@ -143,10 +160,14 @@ export default function PropertyDetailView() {
     propertyData === null && setPropertyData(data);
   })
 
+  const handleModalClose = useCallback(() => {
+    setOpen(false);
+  }, [isOpen]);
+
   return (
     <Modal
-      opened={true}
-      onClose={() => {}}
+      opened={isOpen}
+      onClose={handleModalClose}
       title={(
         <Title order={2}>
           {propertyDetails.formattedAddress}

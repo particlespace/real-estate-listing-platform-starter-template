@@ -1,14 +1,39 @@
-import {Card, Image, Text, Badge, Button, Group, useMantineTheme} from '@mantine/core';
+import { useCallback } from 'react';
+import {
+    Card,
+    Image,
+    Text,
+    Badge,
+    Button,
+    Group,
+    useMantineTheme
+} from '@mantine/core';
 
+interface ListingProps {
+    image: string;
+    sold: boolean;
+    address: string;
+    price: string | number;
+    setOpen: (open: boolean) => void;
+}
 
-export function Listing(props: { image: string, sold: boolean, address: string, price: string | number }) {
+export function Listing({
+    image,
+    sold,
+    address,
+    price,
+    setOpen,
+}: ListingProps) {
     const theme = useMantineTheme();
 
     const secondaryColor = theme.colorScheme === 'dark'
         ? theme.colors.dark[1]
         : theme.colors.gray[7];
 
-    const {image, price, sold, address} = props;
+    const onClick = useCallback(() => {
+        setOpen(true);
+    }, [setOpen]);
+
     return (
         <div style={{width: 340, margin: 'auto'}}>
             <Card shadow="sm" p="lg">
@@ -27,7 +52,7 @@ export function Listing(props: { image: string, sold: boolean, address: string, 
                     {address}
                 </Text>
 
-                <Button variant="light" color="blue" fullWidth style={{marginTop: 14}}>
+                <Button variant="light" color="blue" fullWidth style={{marginTop: 14}} onClick={onClick}>
                     More Info
                 </Button>
             </Card>

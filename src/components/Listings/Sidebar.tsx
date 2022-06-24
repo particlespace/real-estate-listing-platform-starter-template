@@ -1,7 +1,9 @@
 import { SimpleGrid, Container } from '@mantine/core';
+import { useState } from 'react';
 import { Listing } from './Listing/Listing';
+import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
 
-const mockData = {
+const data = {
     "estimate_list_sell_price": 274200,
     "last_list_or_sold_price": 250000,
     "last_sold_date": "2021-05-04",
@@ -101,25 +103,28 @@ const mockData = {
 const mainprops =
     {
         image: "https://www.whitehouse.gov/wp-content/uploads/2021/01/white_house_grounds.jpg?w=700&h=530&crop=1",
-        estimate_list_sell_price: mockData.estimate_list_sell_price.toString(),
+        estimate_list_sell_price: data.estimate_list_sell_price.toString(),
         address: "1600 Pennsylvania Avenue NW, Washington, DC 20500"
     }
 
-
 export function Sidebar() {
-    const {image, estimate_list_sell_price, address} = mainprops;
+    const [ isOpen, setOpen ] = useState(false);
+
+    const { image, estimate_list_sell_price, address } = mainprops;
+
     return (
         <Container>
+            <PropertyDetailView isOpen={isOpen} setOpen={setOpen} />
             <SimpleGrid cols={2} spacing="lg">
-                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
                               address={address}/></div>
-                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={false}
                               address={address}/></div>
-                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={false}
                               address={address}/></div>
-                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
                               address={address}/></div>
-                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                <div><Listing setOpen={setOpen} image={image} price={'$' + estimate_list_sell_price} sold={true}
                               address={address}/></div>
             </SimpleGrid>
         </Container>
