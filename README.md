@@ -4,7 +4,11 @@ This Template can be used to create your own listing website using the Particle 
 
 ## Available Scripts
 
-In the project directory, you can run:
+First run the following command to install the required dependencies:
+
+### `yarn`
+
+To start the application, run the following command:
 
 ### `yarn start`
 
