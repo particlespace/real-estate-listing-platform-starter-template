@@ -1,10 +1,14 @@
-import { Group, Center } from '@mantine/core';
+
+import { Center, Group, Modal } from '@mantine/core';
+
 import React from 'react';
 import {
   Header, HeaderProps,
 } from './components/Header/Header';
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
+import PropertyDetailView
+  from './components/PropertyDetailView/PropertyDetailView';
 import './App.css';
 import axios, { 
   AxiosError, 
@@ -72,7 +76,6 @@ const links: HeaderProps['links'] = [
     label: 'Home'
   }
 ]
-
 function App() {
   return (
     <div className="App">
@@ -100,6 +103,7 @@ function App() {
         </Center>
       </Group>
       <Footer />
+      <PropertyDetailView />
     </div>
   );
 }
