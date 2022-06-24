@@ -16,8 +16,8 @@ import qs from 'qs';
  * Authorization header for the Particle Space API
  */
 const data = qs.stringify({
-  'secret_key': process.env.SECRET_KEY,
-  'publish_key': process.env.PUBLISH_KEY,
+  'secret_key': process.env.REACT_APP_PARTICLE_SPACE_SECRET_KEY,
+  'publish_key': process.env.REACT_APP_PARTICLE_SPACE_PUBLISH_KEY,
 });
 const authorizationConfig = {
   method: 'post',
