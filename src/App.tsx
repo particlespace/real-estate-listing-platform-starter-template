@@ -1,4 +1,4 @@
-import { Center, Group } from '@mantine/core';
+import { Group, Center } from '@mantine/core';
 import React from 'react';
 import {
   Header, HeaderProps,
@@ -11,6 +11,8 @@ import axios, {
   AxiosResponse 
 } from 'axios';
 import qs from 'qs';
+import Map from './components/Map/Map';
+import {Sidebar} from './components/Listings/Sidebar'
 
 /**
  * Authorization header for the Particle Space API
@@ -86,7 +88,7 @@ function App() {
             width: '49%',
           }}
         >
-          List
+          <Sidebar/>
         </Center>
         <Center
           sx={{
