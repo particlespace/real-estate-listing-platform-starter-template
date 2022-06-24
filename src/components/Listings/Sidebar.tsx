@@ -1,4 +1,5 @@
-import { SimpleGrid, Container } from '@mantine/core';
+
+import { SimpleGrid, Container, ScrollArea } from '@mantine/core';
 import { useState } from 'react';
 import { Listing } from './Listing/Listing';
 import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
@@ -117,20 +118,23 @@ export function Sidebar() {
     const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
 
     return (
-        <Container>
-            <PropertyDetailView isOpen={isOpen} setOpen={setOpen} />
-            <SimpleGrid cols={2} spacing="lg">
-                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
-                              address={propertyAddress}/></div>
-                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={false}
-                              address={propertyAddress}/></div>
-                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={false}
-                              address={propertyAddress}/></div>
-                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
-                              address={propertyAddress}/></div>
-                <div><Listing setOpen={setOpen} image={images[0]} price={'$' + estimate_list_sell_price} sold={true}
-                              address={propertyAddress}/></div>
+        <ScrollArea
+            sx={{
+                height: 'calc(100vh - 72px)',
+            }}
+        >
+            <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={false}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
+                <div><Listing image={image} price={'$' + estimate_list_sell_price} sold={true}
+                              address={address}/></div>
             </SimpleGrid>
-        </Container>
+        </ScrollArea>
     )
 }
