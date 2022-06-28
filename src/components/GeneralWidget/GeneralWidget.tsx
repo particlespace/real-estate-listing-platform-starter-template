@@ -13,9 +13,6 @@ export type ConfidenceMessage = {
 
 export type GeneralWidgetProps = {
   generalConstants: GeneralConstants,
-  confidenceMessages: ConfidenceMessage[],
-  openHouses: any[],
-  units: any[],
 };
 
 /* Labels should have underscores instead of spaces
@@ -31,9 +28,6 @@ const parseLabel = (key: string) => (
 
 export function GeneralWidget({
   generalConstants,
-  // confidenceMessages,
-  // openHouses,
-  // units,
 }: GeneralWidgetProps) {
 
   const generalConstantsItems = useMemo(() => {

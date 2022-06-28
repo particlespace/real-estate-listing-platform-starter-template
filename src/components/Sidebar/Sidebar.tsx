@@ -2,9 +2,8 @@ import {
   SimpleGrid,
   ScrollArea
 } from '@mantine/core';
-import {useState} from 'react';
-import {Listing} from './Listing/Listing';
-import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
+import {useCallback, useState} from 'react';
+import {Listing} from '../Listing/Listing';
 import data from '../../data/proptertyData.json';
 export interface Address {
   address: string;
@@ -47,8 +46,8 @@ export interface OpenHouse {
 }
 
 export interface History {
-    date: string;
     type: string;
+    date: string;
     description: string;
 }
 
@@ -74,7 +73,6 @@ export interface IPropertyData {
 }
 
 export function Sidebar() {
-    const [isOpen, setOpen] = useState(false);
     const listings = data.map((property: IPropertyData) => {
         const {
             images,
@@ -94,7 +92,7 @@ export function Sidebar() {
                     image={images[0]}
                     address={propertyAddress}
                     price={price}
-                    setOpen={setOpen}
+                    propertyData={property}
                 />
             </div>
         )
@@ -106,10 +104,6 @@ export function Sidebar() {
                 height: 'calc(100vh - 72px)',
             }}
         >
-            <PropertyDetailView
-              isOpen={isOpen}
-              setOpen={setOpen}
-            />
             <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
               {listings}
             </SimpleGrid>

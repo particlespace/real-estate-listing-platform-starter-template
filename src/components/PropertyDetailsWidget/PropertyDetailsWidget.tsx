@@ -3,14 +3,14 @@ import {
   TextInput,
 } from '@mantine/core';
 import React, { useMemo } from 'react';
-import { PropertyDetails } from '../ResultContent/ResultContent';
+import { Property } from '../Sidebar/Sidebar';
 
 
 type PropertyDetail = string | number;
 type PropertyEntry = PropertyDetail | null | undefined;
 
 export type PropertyDetailsWidgetProps = {
-  propertyData: PropertyDetails;
+  propertyData: Property;
 };
 
 /* Labels should have underscores instead of spaces
@@ -30,7 +30,7 @@ export function PropertyDetailsWidget({
 
   const propertyDetails = useMemo(() => {
     const keys = Object.keys(propertyData) as (
-      (keyof PropertyDetails)[]
+      (keyof Property)[]
     );
     return keys.reduce(
       (acc, key) => {
