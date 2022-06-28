@@ -2,7 +2,6 @@ import {
   SimpleGrid,
   ScrollArea
 } from '@mantine/core';
-import {useCallback, useState} from 'react';
 import {Listing} from '../Listing/Listing';
 import data from '../../data/proptertyData.json';
 export interface Address {
@@ -13,100 +12,100 @@ export interface Address {
 }
 
 export interface Property {
-    lot_size_ft: number | null;
-    acreage: number | string | null;
-    building_size: number | null;
-    beds: string | null;
-    baths: string | null;
-    year_built: string | null;
-    heating: string | null;
-    cooling: string | null;
-    type: string | null;
-    garage_size: string | null;
-    material: string | null;
-    roof: string | null;
-    builder: string | null;
-    flooring: string | null;
-    interior_features: string | null;
-    appliances: string | null;
-    parking: string | null;
-    annual_tax: string | number | null;
-    available: string | null;
-    hoa_fee: string | number | null;
-    services_included: string | null;
-    amenities_included: string | null;
-    basement: string | null;
-    window_features: string | null;
-    patio_details: string | null;
+  lot_size_ft: number | null;
+  acreage: number | string | null;
+  building_size: number | null;
+  beds: string | null;
+  baths: string | null;
+  year_built: string | null;
+  heating: string | null;
+  cooling: string | null;
+  type: string | null;
+  garage_size: string | null;
+  material: string | null;
+  roof: string | null;
+  builder: string | null;
+  flooring: string | null;
+  interior_features: string | null;
+  appliances: string | null;
+  parking: string | null;
+  annual_tax: string | number | null;
+  available: string | null;
+  hoa_fee: string | number | null;
+  services_included: string | null;
+  amenities_included: string | null;
+  basement: string | null;
+  window_features: string | null;
+  patio_details: string | null;
 }
 
 export interface OpenHouse {
-    date: string;
-    time: string;
+  date: string;
+  time: string;
 }
 
 export interface History {
-    type: string;
-    date: string;
-    description: string;
+  type: string;
+  date: string;
+  description: string;
 }
 
 export interface ConfidenceMessage {
-    message: string;
-    type: string;
+  message: string;
+  type: string;
 }
 
 export interface IPropertyData {
-    estimate_list_sell_price: number;
-    last_list_or_sold_price:  number;
-    last_sold_date:           string;
-    classification:           string;
-    address:                  Address;
-    property:                 Property;
-    neighborhood_median:      number;
-    open_houses:              OpenHouse[] | null;
-    history:                  History[];
-    images:                   string[];
-    sources:                  number;
-    confidence:               number;
-    confidence_messages:      ConfidenceMessage[];
+  estimate_list_sell_price: number;
+  last_list_or_sold_price:  number;
+  last_sold_date:           string;
+  classification:           string;
+  address:                  Address;
+  property:                 Property;
+  neighborhood_median:      number;
+  open_houses:              OpenHouse[] | null;
+  history:                  History[];
+  images:                   string[];
+  sources:                  number;
+  confidence:               number;
+  confidence_messages:      ConfidenceMessage[];
 }
 
 export function Sidebar() {
-    const listings = data.map((property: IPropertyData) => {
-        const {
-            images,
-            estimate_list_sell_price: price,
-            address: {
-                address,
-                city,
-                state,
-                zipcode
-            },
-        } = property;
-        const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
-        return (
-            <div>
-                <Listing
-                    sold={false}
-                    image={images[0]}
-                    address={propertyAddress}
-                    price={price}
-                    propertyData={property}
-                />
-            </div>
-        )
-    })
-
+  const listings = data.map((property: IPropertyData) => {
+    const {
+        images,
+        estimate_list_sell_price: price,
+        address: {
+            address,
+            city,
+            state,
+            zipcode
+        },
+    } = property;
+    const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
     return (
-        <ScrollArea
-            sx={{
-                height: 'calc(100vh - 72px)',
-            }}
-        >
-            <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
-              {listings}
-            </SimpleGrid>
-        </ScrollArea>
+        <div>
+            <Listing
+                sold={false}
+                image={images[0]}
+                address={propertyAddress}
+                price={price}
+                propertyData={property}
+            />
+        </div>
     )
+  })
+
+  return (
+    <ScrollArea
+      sx={{
+        height: 'calc(100vh - 72px)',
+      }}
+    >
+      <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
+        {listings}
+      </SimpleGrid>
+    </ScrollArea>
+  )
 }

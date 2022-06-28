@@ -56,13 +56,6 @@ const timelineItemVariants: Record<string,TimelineItemVariant>  = {
   },
 }
 
-type HistoryItemType = 'sold' |
-  'listed' |
-  'price_change' |
-  'pending' |
-  'relisted' |
-  'removed';
-
 export type HistoryWidgetProps = {
   data: History[];
 };

@@ -66,8 +66,8 @@ export function PropertyDetailsWidget({
   }, [propertyData]);
 
   return (
-      <Stack>
-        {propertyDetails}
-      </Stack>
+    <Stack>
+      {propertyDetails}
+    </Stack>
   );
 }
