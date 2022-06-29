@@ -15,6 +15,7 @@ import {
   Tag,
   Trash
 } from 'tabler-icons-react';
+import { History } from '../Sidebar/Sidebar'
 
 type TimelineItemVariant = {
   icon: Icon;
@@ -55,21 +56,8 @@ const timelineItemVariants: Record<string,TimelineItemVariant>  = {
   },
 }
 
-type HistoryItemType = 'sold' |
-  'listed' |
-  'price_change' |
-  'pending' |
-  'relisted' |
-  'removed';
-
-export type TimelineItemProps = {
-  type: HistoryItemType;
-  date: string;
-  description: string;
-};
-
 export type HistoryWidgetProps = {
-  data: TimelineItemProps[];
+  data: History[];
 };
 
 export function HistoryWidget({
@@ -77,7 +65,7 @@ export function HistoryWidget({
 }: HistoryWidgetProps) {
   const timelineItems: JSX.Element[] = useMemo(() => {
     return data.map(
-      (event: TimelineItemProps, index: number) => {
+      (event: History, index: number) => {
         const {
           type,
           date,

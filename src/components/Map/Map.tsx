@@ -13,11 +13,11 @@ export default function Map() {
   const locations = [
     {name: "test1", price: '$123k', lat: 39.092306123688125, lng: -94.58670048764},
     {name: "test2", price: '$255k', lat: 39.092306123688125, lng: -94.6765678}
-
   ]
-const handleOnClick = {
-
+const handleOnClick = () => {
+  console.log('handle marker click')
 }
+
   return (
     <div style={{ height: 'calc(100vh - 72px)', width: '100%' }}>
       <GoogleMapReact
@@ -30,13 +30,15 @@ const handleOnClick = {
         defaultZoom={8}
         zoom={zoom}
         >
-          {locations.map((item, index)=>(
+          {locations.map((item) =>(
             <Marker
+              id={item.name}
+              color="blue"
               lat={item.lat}
               lng={item.lng}
               name={item.name}
               text={item.price}
-              onClick = {handleOnClick}
+              onClick={handleOnClick}
               />
           ))}
         </GoogleMapReact>

@@ -1,8 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
   Group,
-  Button,
-  Accordion,
   Stack,
   Text,
   Image,
@@ -11,7 +9,7 @@ import {
 } from '@mantine/core';
 import { useMemo } from 'react';
 import {
-  HistoryWidget, TimelineItemProps,
+  HistoryWidget,
 } from '../HistoryWidget/HistoryWidget';
 import {
   PropertyDetailsWidget,
@@ -20,7 +18,11 @@ import {
   ConfidenceMessage, GeneralWidget,
 } from '../GeneralWidget/GeneralWidget';
 import { useStyles } from './ResultContent.styles';
-import yaml from 'js-yaml';
+import {
+  IPropertyData,
+  History,
+  Property
+} from "../Sidebar/Sidebar";
 
 export type GeneralConstants = {
   classification?: string,
@@ -29,34 +31,6 @@ export type GeneralConstants = {
   last_sold_date: string,
   neighborhood_median: number,
   sources: number;
-}
-
-export type PropertyDetails = {
-  acreage?: number
-  amenities_included?: string
-  annual_tax?: string
-  appliances?: string
-  available?: string
-  basement?: string
-  baths?: number
-  beds?: number
-  builder?: string
-  building_size?: string
-  cooling?: string
-  flooring?: string
-  garage_size?: string
-  heating?: string
-  hoa_fee?: string
-  interior_features?: string
-  lot_size_ft?: string
-  material?: string
-  parking?: string
-  patio_details?: string
-  roof?: string
-  services_included?: string
-  type?: string
-  window_features?: string
-  year_built?: string
 }
 
 export type RequestData = GeneralConstants & {
@@ -69,7 +43,7 @@ export type RequestData = GeneralConstants & {
   };
   history: Array<any>;
   images: Array<string>;
-  property: PropertyDetails;
+  property: Property;
   confidence_messages: Array<ConfidenceMessage>,
   open_houses: {date: string; time: string;}[],
   units: any[]
@@ -91,7 +65,7 @@ interface ListingDetails {
 }
 
 export type ResultContentProps = {
-  data: RequestData;
+  data: IPropertyData;
   listingDetails: ListingDetails;
 };
 
@@ -155,12 +129,12 @@ export function ResultContent({
     return images[0];
   }, [data.images]);
 
-  const propertyData: PropertyDetails = useMemo(() => {
+  const propertyData: Property = useMemo(() => {
     const {property} = data;
     return property;
   }, [data.property])
 
-  const historyData: TimelineItemProps[] = useMemo(() => {
+  const historyData: History[] = useMemo(() => {
     const {history} = data;
     return history;
   }, [data.history]);
@@ -242,10 +216,7 @@ export function ResultContent({
           <Card shadow="md">
             <Title order={3}>General Information</Title>
             <GeneralWidget
-              confidenceMessages={data.confidence_messages}
               generalConstants={generalConstants}
-              openHouses={data.open_houses}
-              units={data.units}
             />
           </Card>
           <Card shadow="md">
