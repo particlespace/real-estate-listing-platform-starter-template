@@ -36,6 +36,7 @@ export const Marker = (props: IMarker) => {
         title={name}
         onMouseEnter={handleMouseOver}
         onMouseLeave={handleMouseLeave}
+        onClick={props.onClick}
       />
       <div className='textbox'>
         {text}
