@@ -35,6 +35,7 @@ export default function Map() {
         >
         {data.map((property: IPropertyData) =>(
           <Marker
+            key={property.longitude}
             id={property.estimate_list_sell_price}
             color="blue"
             lat={property.latitude}

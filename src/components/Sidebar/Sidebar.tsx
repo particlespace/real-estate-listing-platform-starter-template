@@ -88,15 +88,14 @@ export function Sidebar() {
     } = property;
     const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
     return (
-      <div>
-        <Listing
-          sold={false}
-          image={images[0]}
-          address={propertyAddress}
-          price={price}
-          propertyData={property}
-        />
-      </div>
+      <Listing
+        key={images[0]}
+        sold={false}
+        image={images[0]}
+        address={propertyAddress}
+        price={price}
+        propertyData={property}
+      />
     )
   })
 
