@@ -10,6 +10,8 @@
     "state": "MO",
     "zipcode": "64012"
   },
+  "longitude": -94.58670048764,
+  "latitude": 39.092306123688125,
   "property": {
     "lot_size_ft": 6037.64,
     "acreage": null,
@@ -106,6 +108,8 @@
       "state": "Florida",
       "zipcode": "66666"
     },
+    "longitude": -94.6765678,
+    "latitude": 39.092306123688125,
     "property": {
       "lot_size_ft": 6037.64,
       "acreage": null,

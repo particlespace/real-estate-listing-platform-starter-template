@@ -61,7 +61,7 @@ const getPropertyData = (queryAddress: PropertyQuery) => {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     },
-    data : data
+    data: data
   };
 
   axios(authorizationConfig)
@@ -109,26 +109,63 @@ export function Listing({
   }, [setOpen]);
 
   return (
-    <div style={{width: 340, margin: 'auto'}}>
+    <div
+      style={{
+        width: 340,
+        margin: 'auto'
+      }}
+    >
       <PropertyDetailView
         isOpen={isOpen}
         setOpen={setOpen}
         propertyData={propertyData}
       />
-      <Card shadow="sm" p="lg">
+      <Card
+        shadow="sm"
+        p="lg"
+      >
         <Card.Section>
-          <Image src={image} height={160} alt="Norway"/>
+          <Image
+            src={image}
+            height={160}
+            alt="Norway"
+          />
         </Card.Section>
-        <Group position="apart" style={{marginBottom: 5, marginTop: theme.spacing.sm}}>
-          <Text weight={500}>{price}</Text>
-          <Badge color={sold ? "pink" : "green"} variant="light">
+        <Group
+          position="apart"
+          style={{
+            marginBottom: 5,
+            marginTop: theme.spacing.sm
+          }}
+        >
+          <Text weight={500}>
+            {price}
+          </Text>
+          <Badge
+            color={sold ? "pink" : "green"}
+            variant="light"
+          >
             {sold ? "Sold" : "On Sale"}
           </Badge>
         </Group>
-        <Text size="sm" style={{color: secondaryColor, lineHeight: 1.5}}>
+        <Text
+          size="sm"
+          style={{
+            color: secondaryColor,
+            lineHeight: 1.5
+          }}
+        >
           {address}
         </Text>
-        <Button variant="light" color="blue" fullWidth style={{marginTop: 14}} onClick={onClick}>
+        <Button
+          variant="light"
+          color="blue"
+          fullWidth
+          style={{
+            marginTop: 14
+          }}
+          onClick={onClick}
+        >
           More Info
         </Button>
       </Card>

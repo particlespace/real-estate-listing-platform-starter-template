@@ -1,5 +1,7 @@
 import React, {
-  useCallback, useMemo, useState,
+  useCallback,
+  useMemo,
+  useState,
 } from 'react';
 import {
   Header as MantineHeader,
@@ -18,7 +20,10 @@ import {
 } from './styles';
 
 export interface HeaderProps {
-  links: { link: string; label: string }[];
+  links: {
+    link: string;
+    label: string
+  }[];
 }
 
 export function Header({ links }: HeaderProps) {
@@ -36,8 +41,9 @@ export function Header({ links }: HeaderProps) {
           key={link.label}
           href={link.link}
           className={cx(
-            classes.link,
-            { [classes.linkActive]: active === link.link },
+            classes.link, {
+              [classes.linkActive]: active === link.link
+            },
           )}
           onClick={(event) => {
             event.preventDefault();
@@ -68,14 +74,25 @@ export function Header({ links }: HeaderProps) {
           size="sm"
           className={classes.burger}
         />
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+        <Transition
+          transition="pop-top-right"
+          duration={200}
+          mounted={opened}
+        >
           {(styles) => (
-              <Paper className={classes.dropdown} withBorder style={styles}>
+              <Paper
+                className={classes.dropdown}
+                withBorder
+                style={styles}
+              >
                 {items}
               </Paper>
           )}
         </Transition>
-        <Group className={classes.links} spacing={5}>
+        <Group
+          className={classes.links}
+          spacing={5}
+        >
           {items}
         </Group>
         <Logo />

@@ -2,9 +2,10 @@ import {
   Stack,
   TextInput,
 } from '@mantine/core';
-import React, { useMemo } from 'react';
+import React, {
+  useMemo
+} from 'react';
 import { Property } from '../Sidebar/Sidebar';
-
 
 type PropertyDetail = string | number;
 type PropertyEntry = PropertyDetail | null | undefined;
@@ -45,18 +46,6 @@ export function PropertyDetailsWidget({
               disabled={true}
               readOnly={true}
             />,
-            // <Group
-            //   key={key}
-            //   grow={true}
-            //   noWrap={true}
-            //   position="apart"
-            // >
-            //   <Text>{label}</Text>
-            //   <Badge
-            //     variant="outline"
-            //     size="lg"
-            //   >{value}</Badge>
-            // </Group>
           );
         }
         return acc;

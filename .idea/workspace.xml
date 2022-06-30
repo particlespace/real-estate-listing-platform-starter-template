@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6738e2ff-25f0-42e1-98a0-6ba2cf53a2fe" name="Changes" comment="" />
+    <list default="true" id="4182396e-c699-45e3-82d2-713022924c1c" name="Changes" comment="Edit map markers" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,18 +11,96 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="property_markers" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2BJSLUzM6SmWXlATjaipr7Zfx3Z" />
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2Au0haT3RkZyNTPF8Waw8FNNOEn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Sidebar" />
+      <recent name="$PROJECT_DIR$/src/components/Listings" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4182396e-c699-45e3-82d2-713022924c1c" name="Changes" comment="" />
+      <created>1655844282999</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655844282999</updated>
+      <workItem from="1655844285971" duration="1660000" />
+      <workItem from="1656087047105" duration="10000" />
+      <workItem from="1656087120309" duration="2756000" />
+      <workItem from="1656449180870" duration="36000" />
+      <workItem from="1656449269377" duration="294000" />
+      <workItem from="1656450190752" duration="11417000" />
+      <workItem from="1656461701268" duration="24000" />
+      <workItem from="1656608561794" duration="8000" />
+      <workItem from="1656619965264" duration="1439000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add property data types and property data json">
+      <created>1656455834260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656455834260</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Move query to listing and display data from json in property modal page">
+      <created>1656460113381</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656460113382</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Format">
+      <created>1656460689535</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656460689535</updated>
+    </task>
+    <task id="LOCAL-00004" summary="RM propertyData.json">
+      <created>1656460785762</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656460785763</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Edit map markers">
+      <created>1656461717652</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1656461717652</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -38,5 +116,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add property data types and property data json" />
+    <MESSAGE value="Move query to listing and display data from json in property modal page" />
+    <MESSAGE value="Add comment" />
+    <MESSAGE value="Format" />
+    <MESSAGE value="RM propertyData.json" />
+    <MESSAGE value="Edit map markers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit map markers" />
   </component>
 </project>

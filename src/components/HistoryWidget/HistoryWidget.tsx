@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+import React, {
+  useMemo
+} from 'react';
 import moment from 'moment';
 import {
   Center,
@@ -79,9 +81,15 @@ export function HistoryWidget({
             title={variantData.title}
             key={index}
           >
-            <Text color="dimmed" size="sm">
+            <Text
+              color="dimmed"
+              size="sm"
+            >
               {description}
-              <Text size="xs" mt={4}>
+              <Text
+                size="xs"
+                mt={4}
+              >
                 {moment.utc(date).local().toString()}
               </Text>
             </Text>
@@ -99,7 +107,10 @@ export function HistoryWidget({
             height: '100%',
           }}
         >
-          <Text color="dimmed" size="sm">
+          <Text
+            color="dimmed"
+            size="sm"
+          >
             No history available
           </Text>
         </Center>
@@ -109,7 +120,10 @@ export function HistoryWidget({
           maxHeight: 'calc(100vh - 200px)',
           width: '100%',
         }}>
-          <Timeline bulletSize={24} lineWidth={2}>
+          <Timeline
+            bulletSize={24}
+            lineWidth={2}
+          >
             {timelineItems}
           </Timeline>
         </div>

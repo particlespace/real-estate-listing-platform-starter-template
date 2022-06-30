@@ -2,7 +2,7 @@ import {
   SimpleGrid,
   ScrollArea
 } from '@mantine/core';
-import {Listing} from '../Listing/Listing';
+import { Listing } from '../Listing/Listing';
 import data from '../../data/proptertyData.json';
 export interface Address {
   address: string;
@@ -12,31 +12,31 @@ export interface Address {
 }
 
 export interface Property {
-  lot_size_ft: number | null;
-  acreage: number | string | null;
-  building_size: number | null;
-  beds: string | null;
-  baths: string | null;
-  year_built: string | null;
-  heating: string | null;
-  cooling: string | null;
-  type: string | null;
-  garage_size: string | null;
-  material: string | null;
-  roof: string | null;
-  builder: string | null;
-  flooring: string | null;
-  interior_features: string | null;
-  appliances: string | null;
-  parking: string | null;
-  annual_tax: string | number | null;
-  available: string | null;
-  hoa_fee: string | number | null;
-  services_included: string | null;
+  lot_size_ft:        number | null;
+  acreage:            number | string | null;
+  building_size:      number | null;
+  beds:               string | null;
+  baths:              string | null;
+  year_built:         string | null;
+  heating:            string | null;
+  cooling:            string | null;
+  type:               string | null;
+  garage_size:        string | null;
+  material:           string | null;
+  roof:               string | null;
+  builder:            string | null;
+  flooring:           string | null;
+  interior_features:  string | null;
+  appliances:         string | null;
+  parking:            string | null;
+  annual_tax:         string | number | null;
+  available:          string | null;
+  hoa_fee:            string | number | null;
+  services_included:  string | null;
   amenities_included: string | null;
-  basement: string | null;
-  window_features: string | null;
-  patio_details: string | null;
+  basement:           string | null;
+  window_features:    string | null;
+  patio_details:      string | null;
 }
 
 export interface OpenHouse {
@@ -45,14 +45,14 @@ export interface OpenHouse {
 }
 
 export interface History {
-  type: string;
-  date: string;
+  type:        string;
+  date:        string;
   description: string;
 }
 
 export interface ConfidenceMessage {
   message: string;
-  type: string;
+  type:    string;
 }
 
 export interface IPropertyData {
@@ -85,15 +85,15 @@ export function Sidebar() {
     } = property;
     const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
     return (
-        <div>
-            <Listing
-                sold={false}
-                image={images[0]}
-                address={propertyAddress}
-                price={price}
-                propertyData={property}
-            />
-        </div>
+      <div>
+        <Listing
+          sold={false}
+          image={images[0]}
+          address={propertyAddress}
+          price={price}
+          propertyData={property}
+        />
+      </div>
     )
   })
 
@@ -103,7 +103,15 @@ export function Sidebar() {
         height: 'calc(100vh - 72px)',
       }}
     >
-      <SimpleGrid cols={2} spacing='xl' breakpoints={[{maxWidth: 1600, cols: 1, spacing: 'xl'}]}>
+      <SimpleGrid
+        cols={2}
+        spacing='xl'
+        breakpoints={[{
+          maxWidth: 1600,
+          cols: 1,
+          spacing: 'xl'
+        }]}
+      >
         {listings}
       </SimpleGrid>
     </ScrollArea>
