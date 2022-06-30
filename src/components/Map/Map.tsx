@@ -1,101 +1,83 @@
 import GoogleMapReact from 'google-map-react';
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Marker} from './Marker';
-import PropertyDetailView from "../PropertyDetailView/PropertyDetailView";
-import qs from "qs";
-import
-  axios, {
-  AxiosError,
-  AxiosResponse
-} from "axios";
-import { IPropertyData } from "../Sidebar/Sidebar";
-
-interface MapProps {
-  propertyData: IPropertyData;
-}
-export interface PropertyQuery {
-  addressNumber: string;
+import data from '../../data/proptertyData.json';
+import {Listing} from "../Listing/Listing";
+export interface Address {
   address: string;
-  city: string;
-  state: string;
+  city:    string;
+  state:   string;
   zipcode: string;
 }
 
-/**
- * Configure property query for use
- */
-const getPropertyData = (queryAddress: PropertyQuery) => {
-  const {
-    addressNumber,
-    address,
-    city,
-    state,
-    zipcode
-  } = queryAddress;
-
-  /**
-   * Authorization header for the Particle Space API
-   */
-  const data = qs.stringify({
-    'secret_key': process.env.REACT_APP_PARTICLE_SPACE_SECRET_KEY,
-    'publish_key': process.env.REACT_APP_PARTICLE_SPACE_PUBLISH_KEY,
-  });
-  const authorizationConfig = {
-    method: 'post',
-    url: 'https://api.particlespace.com/api/v1/authenticate',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data : data
-  };
-
-  axios(authorizationConfig)
-    .then(function (response: AxiosResponse) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error: AxiosError) {
-      console.log(error);
-    });
-
-  /**
-   * Particle Space search API
-   */
-  const searchConfig = {
-    method: 'get',
-    url: `https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
-    headers: {
-      'Authorization': 'Bearer ' + process.env.BEARER_TOKEN
-    }
-  };
-
-  axios(searchConfig)
-    .then(function (response: AxiosResponse) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error: AxiosError) {
-      console.log(error);
-    });
+export interface Property {
+  lot_size_ft: number | null;
+  acreage: number | string | null;
+  building_size: number | null;
+  beds: string | null;
+  baths: string | null;
+  year_built: string | null;
+  heating: string | null;
+  cooling: string | null;
+  type: string | null;
+  garage_size: string | null;
+  material: string | null;
+  roof: string | null;
+  builder: string | null;
+  flooring: string | null;
+  interior_features: string | null;
+  appliances: string | null;
+  parking: string | null;
+  annual_tax: string | number | null;
+  available: string | null;
+  hoa_fee: string | number | null;
+  services_included: string | null;
+  amenities_included: string | null;
+  basement: string | null;
+  window_features: string | null;
+  patio_details: string | null;
 }
 
-export default function Map({
-  propertyData
-}: MapProps) {
+export interface OpenHouse {
+  date: string;
+  time: string;
+}
 
-  const [isOpen, setOpen] = useState(false);
+export interface History {
+  type: string;
+  date: string;
+  description: string;
+}
 
+export interface ConfidenceMessage {
+  message: string;
+  type: string;
+}
+
+export interface IPropertyData {
+  estimate_list_sell_price: number;
+  last_list_or_sold_price:  number;
+  last_sold_date:           string;
+  classification:           string;
+  address:                  Address;
+  property:                 Property;
+  neighborhood_median:      number;
+  open_houses:              OpenHouse[] | null;
+  history:                  History[];
+  images:                   string[];
+  sources:                  number;
+  confidence:               number;
+  confidence_messages:      ConfidenceMessage[];
+  longitude:                number;
+  latitude:                 number;
+}
+
+export default function Map() {
   const [center, setCenter] = useState<any>({
     lat: 39.092306123688125,
     lng: -94.58670048764,
   });
   const [zoom, setZoom] = useState<number>(9);
-  const locations = [
-    {name: "test1", price: '$789839kk', lat: 39.092306123688125, lng: -94.58670048764},
-    {name: "test2", price: '$274', lat: 39.092306123688125, lng: -94.6765678}
-  ]
-const handleOnClick = useCallback(() => {
-  setOpen(true);
-  console.log(isOpen)
-}, [setOpen]);
 
   return (
     <div style={{ height: 'calc(100vh - 72px)', width: '100%' }}>
@@ -109,21 +91,16 @@ const handleOnClick = useCallback(() => {
         defaultZoom={8}
         zoom={zoom}
         >
-        <PropertyDetailView
-          isOpen={isOpen}
-          setOpen={setOpen}
-          propertyData={propertyData}
-        />
-          {locations.map((item) =>(
+        {data.map((property: IPropertyData) =>(
             <Marker
-              id={item.name}
+              id={property.estimate_list_sell_price}
               color="blue"
-              lat={item.lat}
-              lng={item.lng}
-              name={item.name}
-              text={item.price}
-              onClick={handleOnClick}
-            />
+              lat={property.latitude}
+              lng={property.longitude}
+              name={'test property'}
+              text={property.estimate_list_sell_price.toString()}
+              propertyData={property}
+              />
           ))}
         </GoogleMapReact>
     </div>
