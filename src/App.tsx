@@ -12,7 +12,8 @@ import { HEADER_HEIGHT } from './components/Header/styles';
 import './App.css';
 
 import Map from './components/Map/Map';
-import {Sidebar} from './components/Sidebar/Sidebar';
+import {Address, Sidebar} from './components/Sidebar/Sidebar';
+import data from "./data/proptertyData.json";
 
 const links: HeaderProps['links'] = [
   {
@@ -20,6 +21,7 @@ const links: HeaderProps['links'] = [
     label: 'Home'
   }
 ]
+
 function App() {
   return (
     <div className="App">
@@ -49,7 +51,7 @@ function App() {
               },
           }}
           >
-          <Map/>
+          <Map />
         </Center>
       </Group>
       <Footer />
