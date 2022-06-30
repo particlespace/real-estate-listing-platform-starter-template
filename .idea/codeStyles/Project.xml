@@ -1,0 +1,37 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <JSCodeStyleSettings version="0">
+      <option name="VAR_DECLARATION_WRAP" value="0" />
+      <option name="OBJECT_LITERAL_WRAP" value="0" />
+      <option name="IMPORTS_WRAP" value="0" />
+    </JSCodeStyleSettings>
+    <TypeScriptCodeStyleSettings version="0">
+      <option name="VAR_DECLARATION_WRAP" value="0" />
+      <option name="OBJECT_LITERAL_WRAP" value="0" />
+      <option name="IMPORTS_WRAP" value="0" />
+      <option name="UNION_TYPES_WRAP" value="0" />
+      <option name="CHAINED_CALL_DOT_ON_NEW_LINE" value="false" />
+    </TypeScriptCodeStyleSettings>
+    <codeStyleSettings language="JavaScript">
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+      <option name="INDENT_CASE_FROM_SWITCH" value="false" />
+      <option name="SPECIAL_ELSE_IF_TREATMENT" value="false" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+      <option name="ALIGN_MULTILINE_FOR" value="false" />
+      <option name="WRAP_ON_TYPING" value="0" />
+    </codeStyleSettings>
+    <codeStyleSettings language="TypeScript">
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+      <option name="ENUM_CONSTANTS_WRAP" value="0" />
+      <option name="WRAP_ON_TYPING" value="0" />
+      <indentOptions>
+        <option name="INDENT_SIZE" value="2" />
+        <option name="CONTINUATION_INDENT_SIZE" value="2" />
+        <option name="TAB_SIZE" value="2" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>
