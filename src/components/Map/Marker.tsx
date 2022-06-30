@@ -28,7 +28,8 @@ export const Marker = (props: IMarker) => {
 
   return (
     <div>
-      <div className="marker bounce"
+      <div
+        className="marker bounce"
         style={{
           backgroundColor: color,
           cursor: 'pointer'
