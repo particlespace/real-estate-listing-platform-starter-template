@@ -4,6 +4,7 @@ import {
 } from '@mantine/core';
 import { Listing } from '../Listing/Listing';
 import data from '../../data/proptertyData.json';
+
 export interface Address {
   address: string;
   city:    string;
@@ -58,6 +59,8 @@ export interface ConfidenceMessage {
 export interface IPropertyData {
   estimate_list_sell_price: number;
   last_list_or_sold_price:  number;
+  longitude:                number;
+  latitude:                 number;
   last_sold_date:           string;
   classification:           string;
   address:                  Address;

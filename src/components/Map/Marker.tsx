@@ -1,4 +1,7 @@
-import React, {useCallback, useState} from 'react';
+import React, {
+  useCallback,
+  useState
+} from 'react';
 import './Marker.css';
 import qs from "qs";
 import
@@ -90,9 +93,7 @@ export const Marker = (props: IMarker) => {
     text,
     propertyData
   } = props;
-
   const [isOpen, setOpen] = useState(false);
-
   const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
     const box: HTMLDivElement = event.currentTarget;
       box.style.backgroundColor = "#000a3d";
@@ -104,17 +105,17 @@ export const Marker = (props: IMarker) => {
   const handleOnClick = useCallback(() => {
     setOpen(true);
     console.log(isOpen)
-  }, [setOpen]);
+  }, [setOpen, isOpen]);
 
   return (
     <div>
-      <div className="marker bounce">
       <PropertyDetailView
         isOpen={isOpen}
         setOpen={setOpen}
         propertyData={propertyData}
       />
-        <div className="marker bounce"
+      <div
+        className="marker bounce"
         style={{
           backgroundColor: color,
           cursor: 'pointer'
