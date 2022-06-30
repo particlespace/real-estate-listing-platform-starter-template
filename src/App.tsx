@@ -10,10 +10,8 @@ import {
 import  Footer  from './components/Footer/Footer';
 import { HEADER_HEIGHT } from './components/Header/styles';
 import './App.css';
-
 import Map from './components/Map/Map';
-import {Address, Sidebar} from './components/Sidebar/Sidebar';
-import data from "./data/proptertyData.json";
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 const links: HeaderProps['links'] = [
   {
@@ -50,7 +48,7 @@ function App() {
                   width: 'calc(97% - 375px)'
               },
           }}
-          >
+        >
           <Map />
         </Center>
       </Group>

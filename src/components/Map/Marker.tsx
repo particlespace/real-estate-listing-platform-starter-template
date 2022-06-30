@@ -108,6 +108,7 @@ export const Marker = (props: IMarker) => {
 
   return (
     <div>
+      <div className="marker bounce">
       <PropertyDetailView
         isOpen={isOpen}
         setOpen={setOpen}
