@@ -111,15 +111,15 @@ export default function Map() {
         defaultZoom={8}
         zoom={zoom}
         >
-        {locations.map((item) =>(
+        {data.map((property: IPropertyData) =>(
             <Marker
-              id={item.name}
+              id={property.estimate_list_sell_price}
               color="blue"
-              lat={item.lat}
-              lng={item.lng}
-              name={item.name}
-              text={item.price}
-              onClick={handleOnClick}
+              lat={property.latitude}
+              lng={property.longitude}
+              name={'test property'}
+              text={property.estimate_list_sell_price.toString()}
+              propertyData={property}
               />
           ))}
         </GoogleMapReact>
