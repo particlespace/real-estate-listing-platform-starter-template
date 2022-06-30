@@ -112,16 +112,16 @@ export default function Map() {
         zoom={zoom}
         >
         {data.map((property: IPropertyData) =>(
-            <Marker
-              id={property.estimate_list_sell_price}
-              color="blue"
-              lat={property.latitude}
-              lng={property.longitude}
-              name={'test property'}
-              text={property.estimate_list_sell_price.toString()}
-              propertyData={property}
-              />
-          ))}
+          <Marker
+            id={property.estimate_list_sell_price}
+            color="blue"
+            lat={property.latitude}
+            lng={property.longitude}
+            name={'test property'}
+            text={property.estimate_list_sell_price.toString()}
+            propertyData={property}
+          />
+        ))}
         </GoogleMapReact>
     </div>
   );
