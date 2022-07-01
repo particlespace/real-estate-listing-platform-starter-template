@@ -7,10 +7,12 @@ import { IPropertyData } from '../Sidebar/Sidebar';
 import data from '../../data/proptertyData.json';
 
 export default function Map() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [center, setCenter] = useState<any>({
     lat: 39.092306123688125,
     lng: -94.58670048764,
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [zoom, setZoom] = useState<number>(9);
 
   return (

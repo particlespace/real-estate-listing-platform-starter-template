@@ -99,6 +99,7 @@ const formatKeys = (obj: any): typeof obj => {
       Object.entries(obj).map(
         ([key, value]) => [
           formatKey(key),
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           formatKeys(value)
         ]
       )
@@ -127,17 +128,17 @@ export function ResultContent({
   const imageUrl: string = useMemo(() => {
     const {images} = data;
     return images[0];
-  }, [data.images]);
+  }, [data]);
 
   const propertyData: Property = useMemo(() => {
     const {property} = data;
     return property;
-  }, [data.property])
+  }, [data])
 
   const historyData: History[] = useMemo(() => {
     const {history} = data;
     return history;
-  }, [data.history]);
+  }, [data]);
 
   return (
     <Stack

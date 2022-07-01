@@ -11,18 +11,12 @@ import
 } from "axios";
 import { IPropertyData } from "../Sidebar/Sidebar";
 import PropertyDetailView from "../PropertyDetailView/PropertyDetailView";
-
-export interface PropertyQuery {
-  addressNumber: string;
-  address: string;
-  city: string;
-  state: string;
-  zipcode: string;
-}
+import { PropertyQuery } from "../Listing/Listing";
 
 /**
  * Configure property query for use
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getPropertyData = (queryAddress: PropertyQuery) => {
   const {
     addressNumber,
