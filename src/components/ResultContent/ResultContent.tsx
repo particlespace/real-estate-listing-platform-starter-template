@@ -175,7 +175,7 @@ export function ResultContent({
               weight="bold"
               color="green"
             >
-              {`${listingDetails.salePrice}`}
+              ${`${listingDetails.salePrice}`}
             </Text>
           </Group>
           <Group position="apart">

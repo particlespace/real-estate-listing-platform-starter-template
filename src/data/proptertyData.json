@@ -25,5 +25,19 @@
     "longitude": -94.647730,
     "latitude": 39.206550,
     "image": "https://photos.zillowstatic.com/fp/54c5580b082049c005a9191292f88cbf-cc_ft_1344.webp"
+  },
+  {
+    "address": {
+      "address": "8316 NW 74th St",
+      "city": "Kansas City",
+      "state": "MO",
+      "zipcode": "64152"
+    },
+
+    "estimateListSellPrice": 475000,
+    "sold": false,
+    "longitude": -94.677840,
+    "latitude": 39.229330,
+    "image": "https://photos.zillowstatic.com/fp/24e3e5e402e6791d615eadcd8f4a025c-cc_ft_1344.webp"
   }
 ]
