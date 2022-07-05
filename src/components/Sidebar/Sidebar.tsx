@@ -86,7 +86,7 @@ export interface IJsonPropertyData {
   longitude: number;
   latitude: number
   image: string;
-  estimateListSellPrice: number | string;
+  estimateListSellPrice: number;
   sold: boolean;
   address: IAddress;
 }

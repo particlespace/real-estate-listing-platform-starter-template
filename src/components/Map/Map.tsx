@@ -13,6 +13,49 @@ export interface IMapProps {
   propertyData: IPropertyData
 }
 
+const roundNumber = (price: number) => {
+  const roundTo =
+    price <= 999999
+      ? 1000
+      : price <= 999999999
+        ? 1000000
+        : 1000000000
+  return Math.round(price/roundTo) * roundTo
+}
+
+const formatPrice = (price: number) => {
+  const roundedNumber = roundNumber(price)
+  const priceString = roundedNumber.toString();
+  const priceLength = priceString.length;
+  const formatNumberVariables =
+    priceLength <= 6
+      ? {
+          numberOfDigitsToRemove: 3,
+          endLabel: 'K'
+        }
+      : priceLength <= 9
+        ? {
+            numberOfDigitsToRemove: 6,
+            endLabel: 'M'
+          }
+        : {
+            numberOfDigitsToRemove: 9,
+            endLabel: 'B'
+          }
+  const {
+    numberOfDigitsToRemove,
+    endLabel
+  } = formatNumberVariables;
+  return priceString.slice(0, priceLength - numberOfDigitsToRemove) + endLabel;
+}
+
+// $4,000
+// $40,000
+// $500,000
+// $3,000,000
+// $88,000,000
+// $888,000,000
+// $1,000,000,000
 
 export default function Map({ propertyData }: IMapProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,7 +94,7 @@ export default function Map({ propertyData }: IMapProps) {
             lat={property.latitude}
             lng={property.longitude}
             name={'test property'}
-            text={property.estimateListSellPrice.toString()}
+            text={'$' + formatPrice(property.estimateListSellPrice)}
             propertyData={propertyData}
           />
         ))}
