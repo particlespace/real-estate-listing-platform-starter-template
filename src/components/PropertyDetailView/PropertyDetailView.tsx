@@ -1,15 +1,10 @@
-import {
-  useEffect,
-  useCallback
-} from 'react';
+import { useCallback } from 'react';
 import {
   Modal,
   Stack,
   Title
 } from '@mantine/core';
-import {
-  ResultContent
-} from '../ResultContent/ResultContent';
+import { ResultContent } from '../ResultContent/ResultContent';
 import { IPropertyData } from "../Sidebar/Sidebar";
 
 interface PropertyDetailViewProps {
@@ -34,7 +29,7 @@ export default function PropertyDetailView({
 
   const handleModalClose = useCallback(() => {
     setOpen(false);
-  }, [isOpen]);
+  }, [setOpen]);
 
   return (
     <Modal
