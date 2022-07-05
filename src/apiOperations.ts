@@ -5,8 +5,8 @@ const apiURL = 'https://api.particlespace.com/api/v1';
 export function login(): Promise<string> {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams({
-      'publish_key': env.PS_PUBLISH_KEY,
-      'secret_key': env.PS_SECRET_KEY,
+      'publish_key': env.REACT_APP_PARTICLESPACE_PUBLISH_KEY,
+      'secret_key': env.REACT_APP_PARTICLESPACE_SECRET_KEY,
     });
     fetch(`${apiURL}/authenticate`, {
       method: 'POST',
