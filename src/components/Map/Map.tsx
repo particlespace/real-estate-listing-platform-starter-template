@@ -49,14 +49,6 @@ const formatPrice = (price: number) => {
   return priceString.slice(0, priceLength - numberOfDigitsToRemove) + endLabel;
 }
 
-// $4,000
-// $40,000
-// $500,000
-// $3,000,000
-// $88,000,000
-// $888,000,000
-// $1,000,000,000
-
 export default function Map({ propertyData }: IMapProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [center, setCenter] = useState<any>({
