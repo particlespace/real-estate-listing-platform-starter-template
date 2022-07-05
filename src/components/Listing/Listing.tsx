@@ -102,7 +102,7 @@ export function Listing({
           }}
         >
           <Text weight={500}>
-            {price}
+            ${price}
           </Text>
           <Badge
             color={sold ? "pink" : "green"}
