@@ -8,9 +8,13 @@ import {
   IPropertyData
 } from '../Sidebar/Sidebar';
 import data from '../../data/proptertyData.json';
+import {
+  SetPropertyData,
+} from "../../App";
 
 export interface IMapProps {
-  propertyData: IPropertyData
+  propertyData: IPropertyData;
+  setPropertyData: SetPropertyData;
 }
 
 const roundNumber = (price: number) => {
@@ -49,7 +53,10 @@ const formatPrice = (price: number) => {
   return priceString.slice(0, priceLength - numberOfDigitsToRemove) + endLabel;
 }
 
-export default function Map({ propertyData }: IMapProps) {
+export default function Map({
+  propertyData,
+  setPropertyData,
+}: IMapProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [center, setCenter] = useState<any>({
     lat: 39.092306123688125,
@@ -80,14 +87,16 @@ export default function Map({ propertyData }: IMapProps) {
         >
         {data.map((property: IJsonPropertyData) =>(
           <Marker
+            id={property.address.address}
             key={property.longitude}
-            id={property.estimateListSellPrice}
+            property={property}
             color="blue"
             lat={property.latitude}
             lng={property.longitude}
             name={'test property'}
             text={'$' + formatPrice(property.estimateListSellPrice)}
             propertyData={propertyData}
+            setPropertyData={setPropertyData}
           />
         ))}
         </GoogleMapReact>

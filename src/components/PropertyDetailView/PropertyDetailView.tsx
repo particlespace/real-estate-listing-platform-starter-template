@@ -1,22 +1,29 @@
-import { useCallback } from 'react';
+import {SetStateAction, useCallback} from 'react';
 import {
   Modal,
   Stack,
-  Title
+  Title,
+  Skeleton
 } from '@mantine/core';
 import { ResultContent } from '../ResultContent/ResultContent';
 import { IPropertyData } from "../Sidebar/Sidebar";
+import PropertyDetailSkeleton from "./PropertyDetailSkeleton";
+import { mockPropertyData } from "../../App";
 
 interface PropertyDetailViewProps {
   isOpen: boolean;
   setOpen: (isOpen: boolean) => void;
   propertyData: IPropertyData;
+  setPropertyData?: SetStateAction<any>
+  isLoading?: SetStateAction<boolean>;
 }
 
 export default function PropertyDetailView({
   isOpen,
   setOpen,
   propertyData,
+  isLoading,
+  setPropertyData,
 }: PropertyDetailViewProps) {
     const {
       address: {
@@ -29,7 +36,13 @@ export default function PropertyDetailView({
 
   const handleModalClose = useCallback(() => {
     setOpen(false);
-  }, [setOpen]);
+    setPropertyData(mockPropertyData)
+  }, [
+    setOpen,
+    setPropertyData
+  ]);
+
+  const propertyAddress = `${address}, ${city}, ${state}, ${zipcode}`;
 
   return (
     <Modal
@@ -37,7 +50,17 @@ export default function PropertyDetailView({
       onClose={handleModalClose}
       title={(
         <Title order={2}>
-          {`${address}, ${city}, ${state}, ${zipcode}`}
+          {
+            propertyAddress !== ' , , , '
+              ? propertyAddress
+              : (
+                <Skeleton
+                  width={450}
+                  height={70}
+                  visible={true}
+                />
+              )
+          }
         </Title>
       )}
       size="xl"
@@ -49,16 +72,18 @@ export default function PropertyDetailView({
     >
       <Stack spacing={4}>
         {
-          propertyData !== null && (
-            <ResultContent
-              data={propertyData}
-              listingDetails={{
-                salePrice: propertyData.estimate_list_sell_price,
-                recentActivity: '🔥🔥🔥',
-                views: 1234432,
-              }}
-            />
-          )
+          propertyData !== null && !isLoading
+            ? (
+              <ResultContent
+                data={propertyData}
+                listingDetails={{
+                  salePrice: propertyData.estimate_list_sell_price,
+                  recentActivity: '🔥🔥🔥',
+                  views: 1234432,
+                }}
+              />
+              )
+            : (<PropertyDetailSkeleton />)
         }
       </Stack>
     </Modal>

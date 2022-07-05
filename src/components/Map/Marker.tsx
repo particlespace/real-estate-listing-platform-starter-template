@@ -9,9 +9,14 @@ import
   AxiosError,
   AxiosResponse
 } from "axios";
-import { IPropertyData } from "../Sidebar/Sidebar";
+import {IJsonPropertyData, IPropertyData} from "../Sidebar/Sidebar";
 import PropertyDetailView from "../PropertyDetailView/PropertyDetailView";
 import { PropertyQuery } from "../Listing/Listing";
+import {
+  SetPropertyData,
+  SetMarkerClicked
+} from "../../App";
+import {searchProperty} from "../../apiOperations";
 
 /**
  * Configure property query for use
@@ -78,6 +83,8 @@ export interface IMarker {
   lat: number;
   lng: number;
   propertyData: IPropertyData;
+  property: IJsonPropertyData;
+  setPropertyData: SetPropertyData;
 }
 
 export const Marker = (props: IMarker) => {
@@ -85,9 +92,18 @@ export const Marker = (props: IMarker) => {
     color,
     name,
     text,
-    propertyData
+    propertyData,
+    setPropertyData,
+    property,
   } = props;
-  const [isOpen, setOpen] = useState(false);
+  const [
+    isOpen,
+    setOpen
+  ] = useState(false);
+  const [
+    isLoading,
+    setLoading
+  ] = useState(false);
   const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
     const box: HTMLDivElement = event.currentTarget;
       box.style.backgroundColor = "#000a3d";
@@ -96,17 +112,32 @@ export const Marker = (props: IMarker) => {
     const box: HTMLDivElement = event.currentTarget;
       box.style.backgroundColor = "#0078ff";
   };
-  const handleOnClick = useCallback(() => {
+
+  const {
+    address
+  } = property;
+
+  const handleOnClick = useCallback(async () => {
+    setLoading(true);
     setOpen(true);
-    console.log(isOpen)
-  }, [setOpen, isOpen]);
+    const property = await searchProperty(address)
+    console.log(propertyData.address)
+    setPropertyData(property);
+    setLoading(false);
+  }, [
+    address,
+    propertyData,
+    setPropertyData
+  ]);
 
   return (
     <div>
       <PropertyDetailView
         isOpen={isOpen}
+        isLoading={isLoading}
         setOpen={setOpen}
         propertyData={propertyData}
+        setPropertyData={setPropertyData}
       />
       <div
         className="marker bounce"

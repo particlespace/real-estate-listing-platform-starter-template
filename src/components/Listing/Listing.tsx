@@ -28,15 +28,15 @@ export interface PropertyQuery {
 }
 
 export interface IListingCardProps {
-  property: IJsonPropertyData
-  setPropertyData: SetPropertyData
+  property: IJsonPropertyData;
+  setPropertyData: SetPropertyData;
   propertyData: IPropertyData;
 }
 
 export function Listing({
   property,
   setPropertyData,
-  propertyData
+  propertyData,
 }: IListingCardProps) {
   const [isOpen, setOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -57,6 +57,7 @@ export function Listing({
     zipcode
   } = addressObject;
   const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`
+
   const onClick = useCallback(async () => {
     setLoading(true)
     const propertyData = await searchProperty(addressObject).then((response) =>{
@@ -66,6 +67,7 @@ export function Listing({
     setOpen(true);
     setLoading(false)
   }, [
+    setLoading,
     setPropertyData,
     setOpen,
     addressObject

@@ -98,7 +98,7 @@ export interface ISideBarProps {
 
 export function Sidebar({
   setPropertyData,
-  propertyData
+  propertyData,
 }: ISideBarProps) {
   const listings = data.map((property: IJsonPropertyData) => {
     const {

@@ -22,17 +22,18 @@ const links: HeaderProps['links'] = [
 ]
 
 export type SetPropertyData = (prevState: IPropertyData) => IPropertyData;
+export type SetMarkerClicked = (isMarkerClicked: boolean) => void;
 
-const mockPropertyData =  {
+export const mockPropertyData =  {
   "estimate_list_sell_price": 274200,
   "last_list_or_sold_price": 250000,
   "last_sold_date": "2021-05-04",
   "classification": "single_family",
   "address": {
-    "address": "808 Awesome Street",
-    "city": "Kansas City",
-    "state": "MO",
-    "zipcode": "64012"
+    "address": " ",
+    "city": "",
+    "state": "",
+    "zipcode": ""
   },
   "longitude": -94.58670048764,
   "latitude": 39.092306123688125,
@@ -123,7 +124,18 @@ const mockPropertyData =  {
 }
 
 function App() {
-  const [propertyData, setPropertyData] = useState(mockPropertyData);
+  const [
+    propertyData,
+    setPropertyData
+  ] = useState(mockPropertyData);
+  const [
+    isMarkerClicked,
+    setMarkerClicked
+  ] = useState(false);
+  const [
+    isLoading,
+    setLoading
+  ] = useState(false);
 
   return (
     <div className="App">
@@ -143,9 +155,12 @@ function App() {
           }}
         >
           <Sidebar
-            // @ts-ignore some data are null
+            // @ts-ignore some data will be null
             setPropertyData={setPropertyData}
             propertyData={propertyData}
+            isMarkerClicked={isMarkerClicked}
+            isLoading={isLoading}
+            setLoading={setLoading}
           />
         </Center>
         <Center
@@ -157,7 +172,11 @@ function App() {
               },
           }}
         >
-          <Map propertyData={propertyData} />
+          <Map
+            propertyData={propertyData}
+            // @ts-ignore some data will be null
+            setPropertyData={setPropertyData}
+          />
         </Center>
       </Group>
       <Footer />
