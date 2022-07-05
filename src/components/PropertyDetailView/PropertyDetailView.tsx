@@ -55,7 +55,7 @@ export default function PropertyDetailView({
               listingDetails={{
                 salePrice: propertyData.estimate_list_sell_price,
                 recentActivity: '🔥🔥🔥',
-                views: 129048,
+                views: 1234432,
               }}
             />
           )

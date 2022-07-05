@@ -5,13 +5,13 @@ import {
 import React, {
   useMemo
 } from 'react';
-import { Property } from '../Sidebar/Sidebar';
+import { IProperty } from '../Sidebar/Sidebar';
 
 type PropertyDetail = string | number;
 type PropertyEntry = PropertyDetail | null | undefined;
 
 export type PropertyDetailsWidgetProps = {
-  propertyData: Property;
+  propertyData: IProperty;
 };
 
 /* Labels should have underscores instead of spaces
@@ -31,7 +31,7 @@ export function PropertyDetailsWidget({
 
   const propertyDetails = useMemo(() => {
     const keys = Object.keys(propertyData) as (
-      (keyof Property)[]
+      (keyof IProperty)[]
     );
     return keys.reduce(
       (acc, key) => {

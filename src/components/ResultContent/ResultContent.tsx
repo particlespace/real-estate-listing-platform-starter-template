@@ -20,8 +20,8 @@ import {
 import { useStyles } from './ResultContent.styles';
 import {
   IPropertyData,
-  History,
-  Property
+  IHistory,
+  IProperty
 } from "../Sidebar/Sidebar";
 
 export type GeneralConstants = {
@@ -43,7 +43,7 @@ export type RequestData = GeneralConstants & {
   };
   history: Array<any>;
   images: Array<string>;
-  property: Property;
+  property: IProperty;
   confidence_messages: Array<ConfidenceMessage>,
   open_houses: {date: string; time: string;}[],
   units: any[]
@@ -130,12 +130,12 @@ export function ResultContent({
     return images[0];
   }, [data]);
 
-  const propertyData: Property = useMemo(() => {
+  const propertyData: IProperty = useMemo(() => {
     const {property} = data;
     return property;
   }, [data])
 
-  const historyData: History[] = useMemo(() => {
+  const historyData: IHistory[] = useMemo(() => {
     const {history} = data;
     return history;
   }, [data]);

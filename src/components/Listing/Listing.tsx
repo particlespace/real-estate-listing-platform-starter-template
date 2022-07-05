@@ -1,6 +1,6 @@
 import {
   useState,
-  useCallback
+  useCallback,
 } from 'react';
 import {
   Card,
@@ -12,15 +12,13 @@ import {
   useMantineTheme
 } from '@mantine/core';
 import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
-import { IPropertyData } from "../Sidebar/Sidebar";
+import {
+  IJsonPropertyData,
+  IPropertyData,
+} from "../Sidebar/Sidebar";
+import { SetPropertyData } from "../../App";
+import { searchProperty } from "../../apiOperations";
 
-interface ListingProps {
-  image: string;
-  sold: boolean;
-  address: string;
-  price: string | number;
-  propertyData: IPropertyData;
-}
 export interface PropertyQuery {
   addressNumber: string;
   address: string;
@@ -29,21 +27,49 @@ export interface PropertyQuery {
   zipcode: string;
 }
 
+export interface IListingCardProps {
+  property: IJsonPropertyData
+  setPropertyData: SetPropertyData
+  propertyData: IPropertyData;
+}
+
 export function Listing({
-  image,
-  sold,
-  address,
-  price,
+  property,
+  setPropertyData,
   propertyData
-}: ListingProps) {
+}: IListingCardProps) {
   const [isOpen, setOpen] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const theme = useMantineTheme();
   const secondaryColor = theme.colorScheme === 'dark'
     ? theme.colors.dark[1]
     : theme.colors.gray[7];
-  const onClick = useCallback(() => {
+  const {
+    address: addressObject,
+    estimateListSellPrice: price,
+    sold,
+    image
+  } = property
+  const {
+    address,
+    city,
+    state,
+    zipcode
+  } = addressObject;
+  const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`
+  const onClick = useCallback(async () => {
+    setLoading(true)
+    const propertyData = await searchProperty(addressObject).then((response) =>{
+      return response;
+    })
+    setPropertyData(propertyData)
     setOpen(true);
-  }, [setOpen]);
+    setLoading(false)
+  }, [
+    setPropertyData,
+    setOpen,
+    addressObject
+  ]);
 
   return (
     <div
@@ -92,7 +118,7 @@ export function Listing({
             lineHeight: 1.5
           }}
         >
-          {address}
+          {propertyAddress}
         </Text>
         <Button
           variant="light"
@@ -102,6 +128,7 @@ export function Listing({
             marginTop: 14
           }}
           onClick={onClick}
+          loading={isLoading}
         >
           More Info
         </Button>

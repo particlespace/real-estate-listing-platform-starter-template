@@ -1,12 +1,16 @@
-import env from 'react-dotenv';
+import { IAddress } from './components/Sidebar/Sidebar';
 
 const apiURL = 'https://api.particlespace.com/api/v1';
 
 export function login(): Promise<string> {
+  console.log('publishKey:', process.env.REACT_APP_PARTICLESPACE_PUBLISH_KEY)
+  console.log('publishKey:', process.env.REACT_APP_PARTICLESPACE_SECRET_KEY)
+
   return new Promise((resolve, reject) => {
+    // @ts-ignore
     const params = new URLSearchParams({
-      'publish_key': env.REACT_APP_PARTICLESPACE_PUBLISH_KEY,
-      'secret_key': env.REACT_APP_PARTICLESPACE_SECRET_KEY,
+      'publish_key': process.env.REACT_APP_PARTICLESPACE_PUBLISH_KEY,
+      'secret_key': process.env.REACT_APP_PARTICLESPACE_SECRET_KEY
     });
     fetch(`${apiURL}/authenticate`, {
       method: 'POST',
@@ -31,13 +35,20 @@ export function login(): Promise<string> {
  * with body:
  * { address, city, state, zip }
  */
-export function searchProperty(address: any): Promise<any> {
+export function searchProperty(address: IAddress): Promise<any> {
   return new Promise((resolve) => login().then((token) => {
+    const {
+      address: streetAddress,
+      city,
+      state,
+      zipcode
+    } = address;
+
     const params =  new URLSearchParams({
-      address: address.streetAddress,
-      city: address.city,
-      state: address.state,
-      zipcode: address.zip,
+      address: streetAddress,
+      city: city,
+      state: state,
+      zipcode: zipcode,
     })
     const url = new URL(`${apiURL}/property/search`)
     url.search = params.toString();
