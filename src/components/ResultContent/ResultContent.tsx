@@ -20,8 +20,8 @@ import {
 import { useStyles } from './ResultContent.styles';
 import {
   IPropertyData,
-  History,
-  Property
+  IHistory,
+  IProperty
 } from "../Sidebar/Sidebar";
 
 export type GeneralConstants = {
@@ -43,7 +43,7 @@ export type RequestData = GeneralConstants & {
   };
   history: Array<any>;
   images: Array<string>;
-  property: Property;
+  property: IProperty;
   confidence_messages: Array<ConfidenceMessage>,
   open_houses: {date: string; time: string;}[],
   units: any[]
@@ -99,6 +99,7 @@ const formatKeys = (obj: any): typeof obj => {
       Object.entries(obj).map(
         ([key, value]) => [
           formatKey(key),
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           formatKeys(value)
         ]
       )
@@ -127,17 +128,17 @@ export function ResultContent({
   const imageUrl: string = useMemo(() => {
     const {images} = data;
     return images[0];
-  }, [data.images]);
+  }, [data]);
 
-  const propertyData: Property = useMemo(() => {
+  const propertyData: IProperty = useMemo(() => {
     const {property} = data;
     return property;
-  }, [data.property])
+  }, [data])
 
-  const historyData: History[] = useMemo(() => {
+  const historyData: IHistory[] = useMemo(() => {
     const {history} = data;
     return history;
-  }, [data.history]);
+  }, [data]);
 
   return (
     <Stack
@@ -174,7 +175,7 @@ export function ResultContent({
               weight="bold"
               color="green"
             >
-              {`${listingDetails.salePrice}`}
+              ${`${listingDetails.salePrice}`}
             </Text>
           </Group>
           <Group position="apart">

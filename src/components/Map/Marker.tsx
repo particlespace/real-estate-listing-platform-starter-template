@@ -3,78 +3,13 @@ import React, {
   useState
 } from 'react';
 import './Marker.css';
-import qs from "qs";
-import
-  axios, {
-  AxiosError,
-  AxiosResponse
-} from "axios";
-import { IPropertyData } from "../Sidebar/Sidebar";
+import {
+  IJsonPropertyData,
+  IPropertyData
+} from "../Sidebar/Sidebar";
 import PropertyDetailView from "../PropertyDetailView/PropertyDetailView";
-
-export interface PropertyQuery {
-  addressNumber: string;
-  address: string;
-  city: string;
-  state: string;
-  zipcode: string;
-}
-
-/**
- * Configure property query for use
- */
-const getPropertyData = (queryAddress: PropertyQuery) => {
-  const {
-    addressNumber,
-    address,
-    city,
-    state,
-    zipcode
-  } = queryAddress;
-
-  /**
-   * Authorization header for the Particle Space API
-   */
-  const data = qs.stringify({
-    'secret_key': process.env.REACT_APP_PARTICLE_SPACE_SECRET_KEY,
-    'publish_key': process.env.REACT_APP_PARTICLE_SPACE_PUBLISH_KEY,
-  });
-  const authorizationConfig = {
-    method: 'post',
-    url: 'https://api.particlespace.com/api/v1/authenticate',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data : data
-  };
-
-  axios(authorizationConfig)
-    .then(function (response: AxiosResponse) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error: AxiosError) {
-      console.log(error);
-    });
-
-  /**
-   * Particle Space search API
-   */
-  const searchConfig = {
-    method: 'get',
-    url: `https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
-    headers: {
-      'Authorization': 'Bearer ' + process.env.BEARER_TOKEN
-    }
-  };
-
-  axios(searchConfig)
-    .then(function (response: AxiosResponse) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error: AxiosError) {
-      console.log(error);
-    });
-}
+import { SetPropertyData } from "../../App";
+import { searchProperty } from "../../apiOperations";
 
 export interface IMarker {
   color: string;
@@ -84,6 +19,8 @@ export interface IMarker {
   lat: number;
   lng: number;
   propertyData: IPropertyData;
+  property: IJsonPropertyData;
+  setPropertyData: SetPropertyData;
 }
 
 export const Marker = (props: IMarker) => {
@@ -91,9 +28,18 @@ export const Marker = (props: IMarker) => {
     color,
     name,
     text,
-    propertyData
+    propertyData,
+    setPropertyData,
+    property,
   } = props;
-  const [isOpen, setOpen] = useState(false);
+  const [
+    isOpen,
+    setOpen
+  ] = useState(false);
+  const [
+    isLoading,
+    setLoading
+  ] = useState(false);
   const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
     const box: HTMLDivElement = event.currentTarget;
       box.style.backgroundColor = "#000a3d";
@@ -102,17 +48,32 @@ export const Marker = (props: IMarker) => {
     const box: HTMLDivElement = event.currentTarget;
       box.style.backgroundColor = "#0078ff";
   };
-  const handleOnClick = useCallback(() => {
+
+  const {
+    address
+  } = property;
+
+  const handleOnClick = useCallback(async () => {
+    setLoading(true);
     setOpen(true);
-    console.log(isOpen)
-  }, [setOpen, isOpen]);
+    const property = await searchProperty(address)
+    console.log(propertyData.address)
+    setPropertyData(property);
+    setLoading(false);
+  }, [
+    address,
+    propertyData,
+    setPropertyData
+  ]);
 
   return (
     <div>
       <PropertyDetailView
         isOpen={isOpen}
+        isLoading={isLoading}
         setOpen={setOpen}
         propertyData={propertyData}
+        setPropertyData={setPropertyData}
       />
       <div
         className="marker bounce"

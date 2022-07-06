@@ -1,6 +1,6 @@
 import {
   useState,
-  useCallback
+  useCallback,
 } from 'react';
 import {
   Card,
@@ -12,22 +12,13 @@ import {
   useMantineTheme
 } from '@mantine/core';
 import PropertyDetailView from '../PropertyDetailView/PropertyDetailView';
+import {
+  IJsonPropertyData,
+  IPropertyData,
+} from "../Sidebar/Sidebar";
+import { SetPropertyData } from "../../App";
+import { searchProperty } from "../../apiOperations";
 
-import qs from "qs";
-import
-  axios, {
-  AxiosError,
-  AxiosResponse
-} from "axios";
-import { IPropertyData } from "../Sidebar/Sidebar";
-
-interface ListingProps {
-  image: string;
-  sold: boolean;
-  address: string;
-  price: string | number;
-  propertyData: IPropertyData;
-}
 export interface PropertyQuery {
   addressNumber: string;
   address: string;
@@ -36,77 +27,51 @@ export interface PropertyQuery {
   zipcode: string;
 }
 
-/**
- * Configure property query for use
- */
-const getPropertyData = (queryAddress: PropertyQuery) => {
-  const {
-    addressNumber,
-    address,
-    city,
-    state,
-    zipcode
-  } = queryAddress;
-
-  /**
-   * Authorization header for the Particle Space API
-   */
-  const data = qs.stringify({
-    'secret_key': process.env.REACT_APP_PARTICLE_SPACE_SECRET_KEY,
-    'publish_key': process.env.REACT_APP_PARTICLE_SPACE_PUBLISH_KEY,
-  });
-  const authorizationConfig = {
-    method: 'post',
-    url: 'https://api.particlespace.com/api/v1/authenticate',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data: data
-  };
-
-  axios(authorizationConfig)
-  .then(function (response: AxiosResponse) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error: AxiosError) {
-    console.log(error);
-  });
-
-  /**
-   * Particle Space search API
-   */
-  const searchConfig = {
-    method: 'get',
-    url: `https://api.particlespace.com/api/v1/property/search?address=${addressNumber} ${address}&city=${city}&state=${state}&zipcode=${zipcode}`,
-    headers: {
-      'Authorization': 'Bearer ' + process.env.BEARER_TOKEN
-    }
-  };
-
-  axios(searchConfig)
-  .then(function (response: AxiosResponse) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error: AxiosError) {
-    console.log(error);
-  });
+export interface IListingCardProps {
+  property: IJsonPropertyData;
+  setPropertyData: SetPropertyData;
+  propertyData: IPropertyData;
 }
 
 export function Listing({
-  image,
-  sold,
-  address,
-  price,
-  propertyData
-}: ListingProps) {
+  property,
+  setPropertyData,
+  propertyData,
+}: IListingCardProps) {
   const [isOpen, setOpen] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const theme = useMantineTheme();
   const secondaryColor = theme.colorScheme === 'dark'
     ? theme.colors.dark[1]
     : theme.colors.gray[7];
-  const onClick = useCallback(() => {
+  const {
+    address: addressObject,
+    estimateListSellPrice: price,
+    sold,
+    image
+  } = property
+  const {
+    address,
+    city,
+    state,
+    zipcode
+  } = addressObject;
+  const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`
+
+  const onClick = useCallback(async () => {
+    setLoading(true)
+    const propertyData = await searchProperty(addressObject).then((response) =>{
+      return response;
+    })
+    setPropertyData(propertyData)
     setOpen(true);
-  }, [setOpen]);
+    setLoading(false)
+  }, [
+    setLoading,
+    setPropertyData,
+    setOpen,
+    addressObject
+  ]);
 
   return (
     <div
@@ -139,7 +104,7 @@ export function Listing({
           }}
         >
           <Text weight={500}>
-            {price}
+            ${price}
           </Text>
           <Badge
             color={sold ? "pink" : "green"}
@@ -155,7 +120,7 @@ export function Listing({
             lineHeight: 1.5
           }}
         >
-          {address}
+          {propertyAddress}
         </Text>
         <Button
           variant="light"
@@ -165,6 +130,7 @@ export function Listing({
             marginTop: 14
           }}
           onClick={onClick}
+          loading={isLoading}
         >
           More Info
         </Button>

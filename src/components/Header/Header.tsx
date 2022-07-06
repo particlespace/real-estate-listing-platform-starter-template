@@ -29,6 +29,7 @@ export interface HeaderProps {
 export function Header({ links }: HeaderProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
+  const [isLoggedIn, setLogin] = useState(false);
   const {
     classes,
     cx
@@ -58,8 +59,9 @@ export function Header({ links }: HeaderProps) {
   );
 
   const handleLogin = useCallback(() => {
-    console.log('Handle Login Callback')
-  }, [])
+    setLogin(!isLoggedIn);
+    console.log('isLoggedIn:', isLoggedIn)
+  }, [isLoggedIn])
 
   const handleRegister = useCallback(() => {
     console.log('Handle Register Callback')

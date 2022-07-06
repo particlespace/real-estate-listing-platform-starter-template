@@ -4,15 +4,16 @@ import {
 } from '@mantine/core';
 import { Listing } from '../Listing/Listing';
 import data from '../../data/proptertyData.json';
+import { SetPropertyData } from "../../App";
 
-export interface Address {
+export interface IAddress {
   address: string;
   city:    string;
   state:   string;
   zipcode: string;
 }
 
-export interface Property {
+export interface IProperty {
   lot_size_ft:        number | null;
   acreage:            number | string | null;
   building_size:      number | null;
@@ -40,18 +41,18 @@ export interface Property {
   patio_details:      string | null;
 }
 
-export interface OpenHouse {
+export interface IOpenHouse {
   date: string;
   time: string;
 }
 
-export interface History {
+export interface IHistory {
   type:        string;
   date:        string;
   description: string;
 }
 
-export interface ConfidenceMessage {
+export interface IConfidenceMessage {
   message: string;
   type:    string;
 }
@@ -63,40 +64,53 @@ export interface IPropertyData {
   latitude:                 number;
   last_sold_date:           string;
   classification:           string;
-  address:                  Address;
-  property:                 Property;
+  address:                  IAddress;
+  property:                 IProperty;
   neighborhood_median:      number;
-  open_houses:              OpenHouse[] | null;
-  history:                  History[];
+  open_houses:              IOpenHouse[] | null;
+  history:                  IHistory[];
   images:                   string[];
   sources:                  number;
   confidence:               number;
-  confidence_messages:      ConfidenceMessage[];
+  confidence_messages:      IConfidenceMessage[];
 }
 
-export function Sidebar() {
-  const listings = data.map((property: IPropertyData) => {
+export interface IAddress {
+  address: string;
+  city: string;
+  state: string;
+  zipcode: string;
+}
+
+export interface IJsonPropertyData {
+  longitude: number;
+  latitude: number
+  image: string;
+  estimateListSellPrice: number;
+  sold: boolean;
+  address: IAddress;
+}
+
+export interface ISideBarProps {
+  setPropertyData: SetPropertyData;
+  propertyData: IPropertyData;
+}
+
+export function Sidebar({
+  setPropertyData,
+  propertyData,
+}: ISideBarProps) {
+  const listings = data.map((property: IJsonPropertyData) => {
     const {
-        images,
-        estimate_list_sell_price: price,
-        address: {
-            address,
-            city,
-            state,
-            zipcode
-        },
+        image,
     } = property;
-    const propertyAddress = `${address}, ${city}, ${state} ${zipcode}`;
     return (
-      <div>
-        <Listing
-          sold={false}
-          image={images[0]}
-          address={propertyAddress}
-          price={price}
-          propertyData={property}
-        />
-      </div>
+      <Listing
+        key={image}
+        property={property}
+        propertyData={propertyData}
+        setPropertyData={setPropertyData}
+      />
     )
   })
 

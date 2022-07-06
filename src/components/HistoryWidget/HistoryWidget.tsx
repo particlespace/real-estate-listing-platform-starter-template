@@ -17,7 +17,7 @@ import {
   Tag,
   Trash
 } from 'tabler-icons-react';
-import { History } from '../Sidebar/Sidebar'
+import { IHistory } from '../Sidebar/Sidebar'
 
 type TimelineItemVariant = {
   icon: Icon;
@@ -59,7 +59,7 @@ const timelineItemVariants: Record<string,TimelineItemVariant>  = {
 }
 
 export type HistoryWidgetProps = {
-  data: History[];
+  data: IHistory[];
 };
 
 export function HistoryWidget({
@@ -67,7 +67,7 @@ export function HistoryWidget({
 }: HistoryWidgetProps) {
   const timelineItems: JSX.Element[] = useMemo(() => {
     return data.map(
-      (event: History, index: number) => {
+      (event: IHistory, index: number) => {
         const {
           type,
           date,
