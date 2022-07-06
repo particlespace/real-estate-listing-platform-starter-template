@@ -129,10 +129,6 @@ function App() {
     setPropertyData
   ] = useState(mockPropertyData);
   const [
-    isMarkerClicked,
-    setMarkerClicked
-  ] = useState(false);
-  const [
     isLoading,
     setLoading
   ] = useState(false);
@@ -158,7 +154,6 @@ function App() {
             // @ts-ignore some data will be null
             setPropertyData={setPropertyData}
             propertyData={propertyData}
-            isMarkerClicked={isMarkerClicked}
             isLoading={isLoading}
             setLoading={setLoading}
           />
