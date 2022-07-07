@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4182396e-c699-45e3-82d2-713022924c1c" name="Changes" comment="">
+    <list default="true" id="4182396e-c699-45e3-82d2-713022924c1c" name="Changes" comment="Edit map markers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map/Map.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map/Marker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map/Marker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +66,10 @@
       <workItem from="1656461701268" duration="24000" />
       <workItem from="1656608561794" duration="8000" />
       <workItem from="1656619965264" duration="1439000" />
+      <workItem from="1657167049266" duration="266000" />
+      <workItem from="1657167379438" duration="40000" />
+      <workItem from="1657167440300" duration="23000" />
+      <workItem from="1657167483007" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="Add property data types and property data json">
       <created>1656455834260</created>
