@@ -2,6 +2,8 @@
 
 This Template can be used to create your own listing website using the Particle Space API.
 
+![Listing Platform](https://github.com/particlespace/real-estate-listing-platform-starter-template/tree/master/public/sampleImage.png)
+
 ## Available Scripts
 
 First run the following command to install the required dependencies:
