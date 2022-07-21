@@ -10,7 +10,8 @@ import {
   Burger,
   Button,
   Transition,
-  Paper
+  Paper,
+  Drawer
 } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import { Logo } from '../Logo/Logo';
@@ -60,7 +61,7 @@ export function Header({ links }: HeaderProps) {
 
   const handleLogin = useCallback(() => {
     setLogin(!isLoggedIn);
-    console.log('isLoggedIn:', isLoggedIn)
+    
   }, [isLoggedIn])
 
   const handleRegister = useCallback(() => {
@@ -69,6 +70,16 @@ export function Header({ links }: HeaderProps) {
 
   return (
     <MantineHeader height={HEADER_HEIGHT} className={classes.header}>
+      <Drawer
+        opened={opened}
+        onClose={() => toggleOpened(false)}
+        padding="xl"
+        size="xl"
+      >
+        <Container size={'sm'}>
+          {items}
+        </Container>
+      </Drawer>
       <Container className={classes.inner}>
         <Burger
           opened={opened}
@@ -105,16 +116,16 @@ export function Header({ links }: HeaderProps) {
           noWrap
         >
           <Button
-            size="xs"
-            variant="subtle"
-            onClick={handleLogin}
+           size="xs"
+           variant="subtle"
+           onClick={handleLogin}
           >
             Login
           </Button>
           <Button
-            size="xs"
-            variant="subtle"
-            onClick={handleRegister}
+           size="xs"
+           variant="subtle"
+           onClick={handleRegister}
           >
             Register
           </Button>
